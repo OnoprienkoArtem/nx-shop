@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'bluebits-header',
+    selector: 'ngshop-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
