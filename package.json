@@ -22,6 +22,7 @@
         "@nrwl/angular": "14.3.6",
         "bootstrap": "^5.2.0-beta1",
         "normalize.css": "^8.0.1",
+        "primeflex": "^3.2.1",
         "primeicons": "^5.0.0",
         "primeng": "^14.0.0-rc.1",
         "rxjs": "~7.4.0",
