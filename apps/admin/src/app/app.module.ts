@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -36,6 +37,7 @@ const routes: Routes = [
     declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent],
     imports: [
       BrowserModule, 
+      HttpClientModule,
       RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }), 
       ...PRIME_MODULE
     ],
