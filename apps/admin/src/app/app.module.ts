@@ -13,6 +13,7 @@ import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 
 const PRIME_MODULE = [CardModule, ToolbarModule, ButtonModule, TableModule];
 
@@ -28,13 +29,17 @@ const routes: Routes = [
       {
         path: 'categories',
         component: CategoriesListComponent
+      },
+      {
+        path: 'categories/form',
+        component: CategoriesFormComponent
       }
     ]
   }
 ];
 
 @NgModule({
-    declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent],
+    declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent],
     imports: [
       BrowserModule, 
       HttpClientModule,
