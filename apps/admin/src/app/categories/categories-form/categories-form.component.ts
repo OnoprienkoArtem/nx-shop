@@ -1,16 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'bluebits-categories-form',
+  selector: 'admin-categories-form',
   templateUrl: './categories-form.component.html',
   styles: [
   ]
 })
 export class CategoriesFormComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      name: [''],
+      icon: [''],
+    });
+  }
+
+  onSubmit() {
+    console.log(this.form.controls.name.value);
+    console.log(this.form.controls.icon.value);
   }
 
 }
