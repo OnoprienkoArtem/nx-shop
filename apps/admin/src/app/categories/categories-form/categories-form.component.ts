@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'admin-categories-form',
@@ -8,21 +8,29 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   ]
 })
 export class CategoriesFormComponent implements OnInit {
-
   form: FormGroup;
+  isSubmitted = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: [''],
-      icon: [''],
+      name: ['', Validators.required],
+      icon: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    console.log(this.form.controls.name.value);
-    console.log(this.form.controls.icon.value);
+    this.isSubmitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    console.log(this.categoryForm['name'].value);
+    console.log(this.categoryForm['icon'].value);
+  }
+
+  get categoryForm() {
+    return this.form.controls;
   }
 
 }
