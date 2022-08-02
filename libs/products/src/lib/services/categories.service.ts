@@ -15,6 +15,6 @@ export class CategoriesService {
   }
 
   createCategory(category: Category): Observable<Category> {
-    return this.http.post('http://localhost:3000/api/v1/categories/', category);
+    return this.http.post<Category>('http://localhost:3000/api/v1/categories/', category);
   }
 }

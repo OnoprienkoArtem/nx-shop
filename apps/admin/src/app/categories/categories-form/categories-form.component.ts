@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from '@bluebits/products';
+import { MessageService } from 'primeng/api';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'admin-categories-form',
@@ -14,7 +17,9 @@ export class CategoriesFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private messageService: MessageService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +43,17 @@ export class CategoriesFormComponent implements OnInit {
     console.log(this.categoryForm['name'].value);
     console.log(this.categoryForm['icon'].value);
 
-    this.categoriesService.createCategory(category).subscribe();
+    this.categoriesService.createCategory(category).subscribe(
+      response => {
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is created'});
+        timer(2000)
+          .toPromise()
+          .then(done => {
+            this.location.back();
+          });
+      },
+      error => this.messageService.add({severity: 'error', summary: 'Error', detail: 'Category is not created'})
+    );
   }
 
   get categoryForm() {
