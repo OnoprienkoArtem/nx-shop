@@ -26,6 +26,7 @@
                   <th>Id</th>
                   <th>Name</th>
                   <th>Icon</th>
+                  <th></th>
               </tr>
           </ng-template>
           <ng-template pTemplate="body" let-category>
@@ -33,6 +34,18 @@
                   <td>{{category.id}}</td>
                   <td>{{category.name}}</td>
                   <td>{{category.icon}}</td>
+                  <td class="flex justify-content-around">
+                    <p-button                       
+                      icon="pi pi-trash"
+                      styleClass="p-button-danger mr-2"  
+                      (click)="deleteCategory()"           
+                    ></p-button>        
+                    <p-button                       
+                      icon="pi pi-pencil"
+                      styleClass="p-button-success"  
+                      (click)="editCategory()"           
+                  ></p-button>
+                  </td>
               </tr>
           </ng-template>
         </p-table>

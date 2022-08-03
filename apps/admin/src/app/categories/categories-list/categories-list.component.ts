@@ -19,4 +19,12 @@ export class CategoriesListComponent implements OnInit {
     });
   }
 
+  deleteCategory() {
+
+  }
+
+  editCategory() {
+    
+  }
+
 }
