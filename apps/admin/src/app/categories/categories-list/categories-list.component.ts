@@ -23,9 +23,9 @@ export class CategoriesListComponent implements OnInit {
     });
   }
 
-  deleteCategory(categoryId: string) {
-    this.categoriesService.deleteCategory(categoryId).subscribe({
-      next: () => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is deleted'}),
+  deleteCategory(category: Category) {
+    this.categoriesService.deleteCategory(category.id).subscribe({
+      next: () => this.messageService.add({severity: 'success', summary: 'Success', detail: `Category ${category.name} is deleted`}),
       error: () => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is not deleted'})
     });
   }
