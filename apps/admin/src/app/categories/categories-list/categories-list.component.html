@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="admin-page">
   <p-card header="Categories" subheader="List of all categories">
     <div class="p-grid mb-2">
@@ -38,7 +39,7 @@
                     <p-button                       
                       icon="pi pi-trash"
                       styleClass="p-button-danger mr-2"  
-                      (click)="deleteCategory()"           
+                      (click)="deleteCategory(category.id)"           
                     ></p-button>        
                     <p-button                       
                       icon="pi pi-pencil"

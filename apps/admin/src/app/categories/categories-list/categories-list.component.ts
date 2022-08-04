@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService, Category } from '@bluebits/products';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'admin-categories-list',
@@ -11,7 +12,10 @@ export class CategoriesListComponent implements OnInit {
 
   categories: Category[] = [];
 
-  constructor(private categoriesService: CategoriesService) { }
+  constructor(
+    private categoriesService: CategoriesService,
+    private messageService: MessageService,  
+  ) { }
 
   ngOnInit(): void {
     this.categoriesService.getCategories().subscribe(categories => {
@@ -19,12 +23,15 @@ export class CategoriesListComponent implements OnInit {
     });
   }
 
-  deleteCategory() {
-
+  deleteCategory(categoryId: string) {
+    this.categoriesService.deleteCategory(categoryId).subscribe({
+      next: () => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is deleted'}),
+      error: () => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is not deleted'})
+    });
   }
 
   editCategory() {
-    
+
   }
 
 }
