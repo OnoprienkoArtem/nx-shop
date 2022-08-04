@@ -18,14 +18,19 @@ export class CategoriesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categoriesService.getCategories().subscribe(categories => {
-      this.categories = categories;
-    });
+    this.fetchCategories();
+  }
+
+  private fetchCategories() {
+    this.categoriesService.getCategories().subscribe(categories => this.categories = categories);
   }
 
   deleteCategory(category: Category) {
     this.categoriesService.deleteCategory(category.id).subscribe({
-      next: () => this.messageService.add({severity: 'success', summary: 'Success', detail: `Category ${category.name} is deleted`}),
+      next: () => {
+        this.messageService.add({severity: 'success', summary: 'Success', detail: `Category ${category.name} is deleted`});
+        this.fetchCategories();
+      },
       error: () => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is not deleted'})
     });
   }
