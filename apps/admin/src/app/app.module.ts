@@ -18,10 +18,12 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
-const PRIME_MODULE = [CardModule, ToolbarModule, ButtonModule, TableModule, InputTextModule, ToastModule];
+const PRIME_MODULE = [CardModule, ToolbarModule, ButtonModule, TableModule, InputTextModule, ToastModule, ConfirmDialogModule];
 
 const routes: Routes = [
   {
@@ -55,7 +57,7 @@ const routes: Routes = [
       RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }), 
       ...PRIME_MODULE
     ],
-    providers: [MessageService],
+    providers: [MessageService, ConfirmationService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
