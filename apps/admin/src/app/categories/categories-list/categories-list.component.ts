@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/products';
 import { MessageService, ConfirmationService } from 'primeng/api';
 
@@ -15,18 +16,19 @@ export class CategoriesListComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private messageService: MessageService,  
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.fetchCategories();
   }
 
-  private fetchCategories() {
+  private fetchCategories(): void {
     this.categoriesService.getCategories().subscribe(categories => this.categories = categories);
   }
 
-  deleteCategory(category: Category) {
+  deleteCategory(category: Category): void {
     this.confirmationService.confirm({
       message: `Do you want to delete this '${category.name}' category?`,
       header: `Delete '${category.name}' category`,
@@ -41,13 +43,10 @@ export class CategoriesListComponent implements OnInit {
         });
       },      
     });
-  }
+  }  
 
-
-  
-
-  editCategory() {
-
+  updateCategory(category: Category): void {
+    this.router.navigateByUrl(`categories/form/${category.id}`);
   }
 
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from '@bluebits/products';
 import { MessageService } from 'primeng/api';
 import { filter, delay, timer, tap, mergeMap, switchMap, catchError, of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'admin-categories-form',
@@ -14,12 +15,14 @@ import { filter, delay, timer, tap, mergeMap, switchMap, catchError, of } from '
 export class CategoriesFormComponent implements OnInit {
   form: FormGroup;
   isSubmitted = false;
+  editMode = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
     private messageService: MessageService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +30,8 @@ export class CategoriesFormComponent implements OnInit {
       name: ['', Validators.required],
       icon: ['', Validators.required],
     });
+
+    this.checkEditMode();
   }
 
   onSubmit() {
@@ -61,6 +66,14 @@ export class CategoriesFormComponent implements OnInit {
 
   get categoryForm() {
     return this.form.controls;
+  }
+
+  private checkEditMode() {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.editMode = true;
+      }
+    });
   }
 
 }
