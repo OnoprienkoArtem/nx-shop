@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from '@bluebits/products';
 import { MessageService } from 'primeng/api';
-import { filter, delay, timer, tap, mergeMap, switchMap, catchError, of } from 'rxjs';
+import { filter, timer, tap, switchMap, catchError, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -69,11 +69,19 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   private checkEditMode() {
-    this.route.params.subscribe(params => {
-      if (params['id']) {
-        this.editMode = true;
-      }
-    });
+    this.route.params.pipe(
+      filter(params => params['id']),
+      tap(() => this.editMode = true),
+      switchMap(params => {
+        return this.categoriesService.getCategory(params['id'])
+      }),
+      tap(category => {
+        this.form.patchValue({
+          name: category.name,
+          icon: category.icon
+        });
+      })
+    ).subscribe();
   }
 
 }
