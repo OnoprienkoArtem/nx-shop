@@ -31,6 +31,7 @@ export class CategoriesFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       icon: ['', Validators.required],
+      color: ['#fff'],
     });
 
     this.checkEditMode();
@@ -46,6 +47,7 @@ export class CategoriesFormComponent implements OnInit {
       id: this.currentCategoryId,
       name: this.categoryForm['name'].value,
       icon: this.categoryForm['icon'].value,
+      color: this.categoryForm['color'].value
     };    
 
     if (this.editMode) {
@@ -92,7 +94,8 @@ export class CategoriesFormComponent implements OnInit {
       tap(category => {
         this.form.patchValue({
           name: category.name,
-          icon: category.icon
+          icon: category.icon,
+          color: category.color
         });
       }),
       take(1),

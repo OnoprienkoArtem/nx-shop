@@ -19,11 +19,21 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ColorPickerModule } from 'primeng/colorpicker';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 
-const PRIME_MODULE = [CardModule, ToolbarModule, ButtonModule, TableModule, InputTextModule, ToastModule, ConfirmDialogModule];
+const PRIME_MODULE = [
+  CardModule, 
+  ToolbarModule, 
+  ButtonModule, 
+  TableModule, 
+  InputTextModule, 
+  ToastModule, 
+  ConfirmDialogModule, 
+  ColorPickerModule
+];
 
 const routes: Routes = [
   {
