@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from '@bluebits/products';
 import { MessageService } from 'primeng/api';
-import { filter, timer, tap, switchMap, catchError, of, take, Observable } from 'rxjs';
+import { filter, timer, tap, switchMap, catchError, of, take } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -64,7 +64,7 @@ export class CategoriesFormComponent implements OnInit {
   private addCategory(category: Category): void {
     this.categoriesService.createCategory(category).pipe(
       filter(Boolean),
-      tap(() => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is created'})),
+      tap((category: Category) => this.messageService.add({severity: 'success', summary: 'Success', detail: `Category ${category.name} is created`})),
       switchMap(() => this.timerBack$),
       catchError(() => of(this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Category is not created' }))),
       take(1),
@@ -74,7 +74,7 @@ export class CategoriesFormComponent implements OnInit {
   private updateCategory(category: Category): void {
     this.categoriesService.updateCategory(category).pipe(
       filter(Boolean),
-      tap(() => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is updated'})),
+      tap((category: Category) => this.messageService.add({severity: 'success', summary: 'Success', detail: `Category ${category.name} is updated`})),
       switchMap(() => this.timerBack$),
       catchError(() => of(this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Category is not updated' }))),
       take(1),
