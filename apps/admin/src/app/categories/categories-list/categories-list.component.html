@@ -34,7 +34,9 @@
               <tr>                  
                   <td>{{category.name}}</td>
                   <td style="text-align: center;"><i style="font-size: 2em;" class="pi " [ngClass]="'pi-' + category.icon"></i></td>
-                  <td [ngStyle]="{'background': category.color}"></td>
+                  <td>
+                    <div [ngStyle]="{'background': category.color}" class="color-round m-auto"></div>
+                  </td>
                   <td class="flex justify-content-around">
                     <p-button                       
                       icon="pi pi-trash"
