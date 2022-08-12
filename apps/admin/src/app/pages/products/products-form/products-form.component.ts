@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'bluebits-products-form',
+  selector: 'admin-products-form',
   templateUrl: './products-form.component.html',
   styles: [
   ]
