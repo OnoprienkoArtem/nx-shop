@@ -33,23 +33,26 @@
                   <th></th>
               </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-category>
+          <ng-template pTemplate="body" let-product>
               <tr>                  
-                  <td>{{category.name}}</td>
-                  <td style="text-align: center;"><i style="font-size: 2em;" class="pi " [ngClass]="'pi-' + category.icon"></i></td>
-                  <td>
-                    <div [ngStyle]="{'background': category.color}" class="color-round m-auto"></div>
-                  </td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.image}}</td>
+                  <td>{{product.price}}</td>
+                  <td>{{product.countInStock}}</td>
+                  <td>{{product.category}}</td>
+                  <td>{{product.dateCreated}}</td>
+
+
                   <td class="flex justify-content-around">
                     <p-button                       
                       icon="pi pi-trash"
                       styleClass="p-button-danger mr-2"  
-                      (click)="deleteCategory(category)"           
+                      (click)="deleteProduct(product)"           
                     ></p-button>        
                     <p-button                       
                       icon="pi pi-pencil"
                       styleClass="p-button-success"  
-                      (click)="updateCategory(category)"           
+                      (click)="updateProduct(product)"           
                   ></p-button>
                   </td>
               </tr>
