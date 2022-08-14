@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '@bluebits/products';
 
 @Component({
   selector: 'admin-products-list',
@@ -10,9 +11,14 @@ export class ProductsListComponent implements OnInit {
 
   products = [];
 
-  constructor() { }
+  constructor(private productService: ProductsService) { }
 
   ngOnInit(): void {
+    this.fetchCategories();
+  }
+
+  private fetchCategories(): void {
+    this.productService.getProducts().subscribe(products => this.products = products);
   }
 
 }
