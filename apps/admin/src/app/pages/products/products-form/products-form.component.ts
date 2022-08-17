@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'admin-products-form',
@@ -7,10 +8,36 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class ProductsFormComponent implements OnInit {
+  form: FormGroup;
+  editMode = false;
+  isSubmitted = false;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit(): void {
+    this.initForm();
   }
+
+  get productForm() {
+    return this.form.controls;
+  }
+
+  private initForm() {
+    this.form = this.formBuilder.group({
+      name: ['', Validators.required],
+      brand: ['', Validators.required],
+      price: ['', Validators.required],
+      category: ['', Validators.required],
+      countInStoke: ['', Validators.required],
+      description: ['', Validators.required],
+      richDescription: [''],
+      image: [''],
+      isFeatured: [''],
+    });
+  }
+
+  onSubmit() {}
 
 }

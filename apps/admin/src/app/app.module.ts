@@ -22,6 +22,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ColorPickerModule } from 'primeng/colorpicker';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -33,7 +34,8 @@ const PRIME_MODULE = [
   InputTextModule, 
   ToastModule, 
   ConfirmDialogModule, 
-  ColorPickerModule
+  ColorPickerModule,
+  InputNumberModule
 ];
 
 const routes: Routes = [
