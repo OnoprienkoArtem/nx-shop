@@ -24,6 +24,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -37,7 +38,8 @@ const PRIME_MODULE = [
   ConfirmDialogModule, 
   ColorPickerModule,
   InputNumberModule,
-  InputTextareaModule
+  InputTextareaModule,
+  InputSwitchModule
 ];
 
 const routes: Routes = [

@@ -57,6 +57,11 @@
               
               <small *ngIf="productForm['category'].invalid && isSubmitted" class="p-error">Category is required</small>
             </div>
+            <div class="field col-4">
+              <label for="isFeatured">Is Featured</label><br>              
+              <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
+            </div>
+            
             <div class="field col-12">
               <label for="description">Description</label><br>
               <textarea pInputTextarea formControlName="description" [rows]="7" [cols]="30"></textarea>
