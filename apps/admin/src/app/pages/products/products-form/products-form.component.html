@@ -48,13 +48,21 @@
           </div>
           <div class="formgrid grid p-fluid">
             <div class="field col-4">
-              <label for="countInStoke">CountInStoke</label><br>
+              <label for="countInStoke">Count In Stoke</label><br>
               <p-inputNumber formControlName="countInStoke" model="decimal" inputId="countInStoke" [useGrouping]="false"></p-inputNumber>
               <small *ngIf="productForm['countInStoke'].invalid && isSubmitted" class="p-error">CountInStoke is required</small>
             </div>
             <div class="field col-4">
               <label for="category">Category</label><br>
-              
+              <p-dropdown 
+                [options]="categories" 
+                formControlName="category" 
+                optionLabel="name" 
+                [filter]="true" 
+                filterBy="name" 
+                [showClear]="true"
+                placeholder="Select a Category"
+              ></p-dropdown>
               <small *ngIf="productForm['category'].invalid && isSubmitted" class="p-error">Category is required</small>
             </div>
             <div class="field col-4">
