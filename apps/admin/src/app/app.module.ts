@@ -26,6 +26,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -41,7 +42,8 @@ const PRIME_MODULE = [
   InputNumberModule,
   InputTextareaModule,
   InputSwitchModule,
-  DropdownModule
+  DropdownModule,
+  EditorModule
 ];
 
 const routes: Routes = [
