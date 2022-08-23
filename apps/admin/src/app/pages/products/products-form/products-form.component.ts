@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoriesService } from '@bluebits/products';
+import { CategoriesService, Product, ProductsService } from '@bluebits/products';
+import { MessageService } from 'primeng/api';
+import { catchError, filter, of, switchMap, take, tap, timer } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'admin-products-form',
@@ -14,10 +17,14 @@ export class ProductsFormComponent implements OnInit {
   isSubmitted = false;
   categories = [];
   imageDisplay: string | ArrayBuffer;
+  timerBack$ = timer(2000).pipe(tap(() => this.location.back()));
 
   constructor(
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
+    private productsService: ProductsService,
+    private messageService: MessageService,
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +54,20 @@ export class ProductsFormComponent implements OnInit {
     this.categoriesService.getCategories().subscribe(categories => this.categories = categories);
   }
 
-  onSubmit() {}
+  onSubmit() {
+    this.isSubmitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+
+    const productFormData = new FormData();
+
+    Object.keys(this.productForm).map(key => {
+      productFormData.append(key, this.productForm[key].value);
+    });
+
+    this.addProduct(productFormData);
+  }
 
   onImageUpload(e) {
     const file = e.target.files[0];
@@ -59,6 +79,16 @@ export class ProductsFormComponent implements OnInit {
       }
       fileReader.readAsDataURL(file);
     }    
+  }
+
+  private addProduct(productData: FormData) {
+    this.productsService.createProduct(productData).pipe(
+      filter(Boolean),
+      tap((product: Product) => this.messageService.add({severity: 'success', summary: 'Success', detail: `Category ${product.name} is created`})),
+      switchMap(() => this.timerBack$),
+      catchError(() => of(this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Category is not created' }))),
+      take(1),
+    ).subscribe();
   }
 
 }
