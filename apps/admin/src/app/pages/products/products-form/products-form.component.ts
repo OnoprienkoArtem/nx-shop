@@ -42,7 +42,7 @@ export class ProductsFormComponent implements OnInit {
       brand: ['', Validators.required],
       price: ['', Validators.required],
       category: ['', Validators.required],
-      countInStoke: ['', Validators.required],
+      countInStock: ['', Validators.required],
       description: ['', Validators.required],
       richDescription: [''],
       image: [''],

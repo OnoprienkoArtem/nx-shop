@@ -45,17 +45,19 @@
                   <td>{{product.dateCreated | date:'short'}}</td>
 
 
-                  <td class="flex justify-content-around">
-                    <p-button                       
-                      icon="pi pi-trash"
-                      styleClass="p-button-danger mr-2"  
-                      (click)="deleteProduct(product)"           
-                    ></p-button>        
-                    <p-button                       
-                      icon="pi pi-pencil"
-                      styleClass="p-button-success"  
-                      (click)="updateProduct(product)"           
-                  ></p-button>
+                  <td>
+                    <div class="flex justify-content-around">
+                      <p-button                       
+                        icon="pi pi-trash"
+                        styleClass="p-button-danger mr-2"  
+                        (click)="deleteProduct(product)"           
+                      ></p-button>        
+                      <p-button                       
+                        icon="pi pi-pencil"
+                        styleClass="p-button-success"  
+                        (click)="updateProduct(product)"           
+                      ></p-button>
+                    </div>
                   </td>
               </tr>
           </ng-template>
