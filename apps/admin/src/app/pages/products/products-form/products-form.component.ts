@@ -46,7 +46,7 @@ export class ProductsFormComponent implements OnInit {
       description: ['', Validators.required],
       richDescription: [''],
       image: [''],
-      isFeatured: [''],
+      isFeatured: [false],
     });
   }
 
@@ -74,6 +74,9 @@ export class ProductsFormComponent implements OnInit {
     const fileReader = new FileReader();
 
     if (file) {
+      this.form.patchValue({ image: file });
+      this.form.get('image').updateValueAndValidity();
+
       fileReader.onload = () => {
         this.imageDisplay = fileReader.result;
       }
@@ -84,9 +87,9 @@ export class ProductsFormComponent implements OnInit {
   private addProduct(productData: FormData) {
     this.productsService.createProduct(productData).pipe(
       filter(Boolean),
-      tap((product: Product) => this.messageService.add({severity: 'success', summary: 'Success', detail: `Category ${product.name} is created`})),
+      tap((product: Product) => this.messageService.add({ severity: 'success', summary: 'Success', detail: `Product ${product.name} is created` })),
       switchMap(() => this.timerBack$),
-      catchError(() => of(this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Category is not created' }))),
+      catchError(() => of(this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Product is not created' }))),
       take(1),
     ).subscribe();
   }
