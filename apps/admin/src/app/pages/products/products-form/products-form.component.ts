@@ -113,13 +113,13 @@ export class ProductsFormComponent implements OnInit {
           name: product.name,
           brand: product.brand,
           price: product.price,
-          category: product.category,
+          category: product.category.id,
           countInStock: product.countInStock,
           description: product.description,
           richDescription: product.richDescription,
-          image: product.image,
           isFeatured: product.isFeatured,
         });
+        this.imageDisplay = product.image;
       }),
       take(1),
     ).subscribe();
