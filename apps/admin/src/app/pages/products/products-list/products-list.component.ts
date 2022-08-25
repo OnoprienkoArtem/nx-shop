@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '@bluebits/products';
+import { Router } from '@angular/router';
+import { Product, ProductsService } from '@bluebits/products';
 
 @Component({
   selector: 'admin-products-list',
@@ -11,10 +12,17 @@ export class ProductsListComponent implements OnInit {
 
   products = [];
 
-  constructor(private productService: ProductsService) { }
+  constructor(
+    private productService: ProductsService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.fetchCategories();
+  }
+
+  updateProduct(product: Product): void {
+    this.router.navigateByUrl(`products/form/${product.id}`);
   }
 
   private fetchCategories(): void {

@@ -4,6 +4,7 @@ import { CategoriesService, Product, ProductsService } from '@bluebits/products'
 import { MessageService } from 'primeng/api';
 import { catchError, filter, of, switchMap, take, tap, timer } from 'rxjs';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'admin-products-form',
@@ -16,6 +17,7 @@ export class ProductsFormComponent implements OnInit {
   editMode = false;
   isSubmitted = false;
   categories = [];
+  currentProductId: string;
   imageDisplay: string | ArrayBuffer;
   timerBack$ = timer(2000).pipe(tap(() => this.location.back()));
 
@@ -25,11 +27,13 @@ export class ProductsFormComponent implements OnInit {
     private productsService: ProductsService,
     private messageService: MessageService,
     private location: Location,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.initForm();
     this.getCategories();
+    this.checkEditMode();
   }
 
   get productForm() {
@@ -90,6 +94,33 @@ export class ProductsFormComponent implements OnInit {
       tap((product: Product) => this.messageService.add({ severity: 'success', summary: 'Success', detail: `Product ${product.name} is created` })),
       switchMap(() => this.timerBack$),
       catchError(() => of(this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Product is not created' }))),
+      take(1),
+    ).subscribe();
+  }
+
+  private checkEditMode() {
+    this.route.params.pipe(
+      filter(params => params['id']),
+      tap(params => {
+        this.editMode = true;
+        this.currentProductId = params['id'];
+      }),
+      switchMap(params => {
+        return this.productsService.getProduct(params['id'])
+      }),
+      tap(product => {
+        this.form.patchValue({
+          name: product.name,
+          brand: product.brand,
+          price: product.price,
+          category: product.category,
+          countInStock: product.countInStock,
+          description: product.description,
+          richDescription: product.richDescription,
+          image: product.image,
+          isFeatured: product.isFeatured,
+        });
+      }),
       take(1),
     ).subscribe();
   }

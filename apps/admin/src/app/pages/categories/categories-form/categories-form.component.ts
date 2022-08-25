@@ -101,5 +101,4 @@ export class CategoriesFormComponent implements OnInit {
       take(1),
     ).subscribe();
   }
-
 }
