@@ -70,7 +70,11 @@ export class ProductsFormComponent implements OnInit {
       productFormData.append(key, this.productForm[key].value);
     });
 
-    this.addProduct(productFormData);
+    if (this.editMode) {
+      this.updateProduct(productFormData);
+    } else {
+      this.addProduct(productFormData);
+    }    
   }
 
   onImageUpload(e) {
@@ -125,4 +129,13 @@ export class ProductsFormComponent implements OnInit {
     ).subscribe();
   }
 
+  private updateProduct(productData: FormData) {
+    this.productsService.updateProduct(productData, this.currentProductId).pipe(
+      filter(Boolean),
+      tap((product: Product) => this.messageService.add({severity: 'success', summary: 'Success', detail: `Product ${product.name} is updated`})),
+      switchMap(() => this.timerBack$),
+      catchError(() => of(this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Product is not updated' }))),
+      take(1),
+    ).subscribe();
+  }
 }
