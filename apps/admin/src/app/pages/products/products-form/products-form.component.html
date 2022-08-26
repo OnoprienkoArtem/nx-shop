@@ -72,7 +72,12 @@
             </div>            
             <div class="field col-12">
               <label for="description">Description</label><br>
-              <textarea pInputTextarea formControlName="description" [rows]="7" [cols]="30"></textarea>
+              <textarea 
+                pInputTextarea 
+                formControlName="description" 
+                [rows]="7" 
+                [cols]="30"
+              ></textarea>
               <small *ngIf="productForm['description'].invalid && isSubmitted" class="p-error">Description is required</small>
             </div>
             <div class="field col-12">
@@ -82,6 +87,7 @@
             <div class="field col-12">
               <label for="mainImage">Main Image</label><br>
               <input type="file" class="p-inputtext" accept="image/*" id="mainImage" (change)="onImageUpload($event)">
+              <small *ngIf="productForm['image'].invalid && isSubmitted" class="p-error">Image is required</small>
               <div class="col-3 mt-2 pl-0">
                 <img [src]="imageDisplay" alt="" style="width: 100%;">
               </div>
