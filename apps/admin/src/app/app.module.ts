@@ -29,6 +29,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { UsersFormComponent } from './users/users-form/users-form.component';
 
 const PRIME_MODULE = [
   CardModule, 
@@ -84,7 +86,18 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent],
+    declarations: [
+      AppComponent, 
+      DashboardComponent, 
+      ShellComponent, 
+      SidebarComponent, 
+      CategoriesListComponent, 
+      CategoriesFormComponent, 
+      ProductsListComponent, 
+      ProductsFormComponent, 
+      UsersListComponent, 
+      UsersFormComponent
+    ],
     imports: [
       BrowserModule, 
       BrowserAnimationsModule,
