@@ -29,7 +29,7 @@ export class UsersService {
   //   return this.http.put<Category>(`${this.apiUrlCategories}/${category.id}`, category);
   // }
 
-  // deleteCategory(categoryId: string): Observable<Category> {
-  //   return this.http.delete<Category>(`${this.apiUrlCategories}/${categoryId}`);
-  // }
+  deleteUser(userId: string): Observable<User> {
+    return this.http.delete<User>(`${this.apiUrlUsers}/${userId}`);
+  }
 }
