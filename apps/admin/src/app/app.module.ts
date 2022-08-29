@@ -80,6 +80,18 @@ const routes: Routes = [
       {
         path: 'products/form/:id',
         component: ProductsFormComponent
+      },
+      {
+        path: 'users',
+        component: UsersListComponent
+      },
+      {
+        path: 'users/form',
+        component: UsersFormComponent
+      },
+      {
+        path: 'users/form/:id',
+        component: UsersFormComponent
       }
     ]
   }
