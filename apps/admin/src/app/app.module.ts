@@ -29,8 +29,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { UsersListComponent } from './users/users-list/users-list.component';
-import { UsersFormComponent } from './users/users-form/users-form.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 
 const PRIME_MODULE = [
   CardModule, 
