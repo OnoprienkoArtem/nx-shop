@@ -29,8 +29,8 @@ export class UsersListComponent implements OnInit {
       accept: () => {
         this.usersService.deleteUser(user.id).subscribe({
           next: () => {
-            this.messageService.add({severity: 'success', summary: 'Success', detail: `User ${user.name} is deleted`});
             this.fetchUsers();
+            this.messageService.add({severity: 'success', summary: 'Success', detail: `User ${user.name} is deleted`});
           },
           error: () => this.messageService.add({severity: 'success', summary: 'Success', detail: 'User is not deleted'})
         });
