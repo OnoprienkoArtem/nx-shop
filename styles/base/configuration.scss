@@ -10,3 +10,8 @@ a {
 ul {
   @include reset-list;
 }
+
+
+.text-align-center {
+  text-align: center !important;
+}
