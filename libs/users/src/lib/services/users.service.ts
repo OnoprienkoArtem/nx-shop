@@ -17,17 +17,17 @@ export class UsersService {
     return this.http.get<User[]>(this.apiUrlUsers);
   }
 
-  // getCategory(categoryId: string): Observable<Category> {
-  //   return this.http.get<Category>(`${this.apiUrlCategories}/${categoryId}`);
-  // }
+  getUser(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrlUsers}/${userId}`);
+  }
 
-  // createCategory(category: Category): Observable<Category> {
-  //   return this.http.post<Category>(this.apiUrlCategories, category);
-  // }
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(this.apiUrlUsers, user);
+  }
 
-  // updateCategory(category: Category): Observable<Category> {
-  //   return this.http.put<Category>(`${this.apiUrlCategories}/${category.id}`, category);
-  // }
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(`${this.apiUrlUsers}/${user.id}`, user);
+  }
 
   deleteUser(userId: string): Observable<User> {
     return this.http.delete<User>(`${this.apiUrlUsers}/${userId}`);

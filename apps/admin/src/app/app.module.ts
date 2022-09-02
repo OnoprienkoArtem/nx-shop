@@ -28,6 +28,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { TagModule } from 'primeng/tag';
+import { InputMaskModule } from 'primeng/inputmask';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -48,7 +49,8 @@ const PRIME_MODULE = [
   InputSwitchModule,
   DropdownModule,
   EditorModule,
-  TagModule
+  TagModule,
+  InputMaskModule
 ];
 
 const routes: Routes = [

@@ -15,6 +15,7 @@ export class UsersFormComponent implements OnInit {
   isSubmitted = false;
   editMode = false;
   currentUserId: string;
+  countries = [];
   timerBack$ = timer(2000).pipe(tap(() => this.location.back()));
 
   constructor(
@@ -110,9 +111,17 @@ export class UsersFormComponent implements OnInit {
       tap(user => {
         this.form.patchValue({
           name: user.name,
-          icon: user.icon,
-          color: user.color
+          email: user.email,
+          phone: user.phone,
+          isAdmin: user.isAdmin,
+          street: user.street,
+          apartment: user.apartment,
+          zip: user.zip,
+          city: user.city,
+          country: user.country,
         });
+        this.userForm['password'].setValidators([]);
+        this.userForm['password'].updateValueAndValidity();
       }),
       take(1),
     ).subscribe();
