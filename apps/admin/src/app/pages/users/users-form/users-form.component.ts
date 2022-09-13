@@ -59,11 +59,11 @@ export class UsersFormComponent implements OnInit {
     }
   }
 
-  initUserForm() {
+  private initUserForm() {
     this.form = this.formBuilder.group({      
       name: ['', Validators.required],
       password: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       isAdmin: [false],
       street: [''],
@@ -126,5 +126,4 @@ export class UsersFormComponent implements OnInit {
       take(1),
     ).subscribe();
   }
-
 }
