@@ -57,7 +57,6 @@ export class UsersFormComponent implements OnInit {
       password: this.userForm['password'].value,
       email: this.userForm['email'].value,
       phone: this.userForm['phone'].value,
-      token: this.userForm['token'].value,
       isAdmin: this.userForm['isAdmin'].value,
       street: this.userForm['street'].value,
       apartment: this.userForm['apartment'].value,
