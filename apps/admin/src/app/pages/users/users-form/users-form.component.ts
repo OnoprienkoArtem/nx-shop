@@ -5,9 +5,6 @@ import { Location } from '@angular/common';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { User, UsersService } from '@bluebits/users';
-import * as countriesLib from 'i18n-iso-countries';
-
-declare const require;
 
 @Component({
   selector: 'admin-users-form',
@@ -35,14 +32,8 @@ export class UsersFormComponent implements OnInit {
     this.checkEditMode();
   }
 
-  private getCountries() {
-    countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'));
-    this.countries = Object.entries(countriesLib.getNames('en', {select: 'official'})).map((entry) => {
-      return {
-        id: entry[0],
-        name: entry[1]
-      }
-    });    
+  private getCountries(): void {    
+    this.countries = this.usersService.getCountries();
   }
 
   onSubmit(): void {

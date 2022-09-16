@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { User } from '../models/user';
+import * as countriesLib from 'i18n-iso-countries';
+declare const require: any;
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,9 @@ export class UsersService {
 
   apiUrlUsers = `${environment.apiUrl}users`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'))
+  }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrlUsers);
@@ -31,5 +35,14 @@ export class UsersService {
 
   deleteUser(userId: string): Observable<User> {
     return this.http.delete<User>(`${this.apiUrlUsers}/${userId}`);
+  }
+
+  getCountries(): { id: string; name: string }[] {
+    return Object.entries(countriesLib.getNames('en', {select: 'official'})).map((entry) => {
+      return {
+        id: entry[0],
+        name: entry[1]
+      }
+    });    
   }
 }
