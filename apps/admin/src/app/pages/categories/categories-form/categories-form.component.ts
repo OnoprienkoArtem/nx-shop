@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from '@bluebits/products';
 import { MessageService } from 'primeng/api';
-import { filter, timer, tap, switchMap, catchError, of, take } from 'rxjs';
+import { filter, timer, tap, switchMap, catchError, of, take, debounceTime } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
