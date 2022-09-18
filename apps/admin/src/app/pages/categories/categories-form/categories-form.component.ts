@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CategoriesFormComponent implements OnInit {
   form: FormGroup;
   isSubmitted = false;
+  isDisabled = false;
   editMode = false;
   currentCategoryId: string;
   timerBack$ = timer(2000).pipe(tap(() => this.location.back()));
@@ -42,6 +43,8 @@ export class CategoriesFormComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+
+    this.isDisabled = true;    
 
     const category: Category = {
       id: this.currentCategoryId,
