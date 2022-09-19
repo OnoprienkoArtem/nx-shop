@@ -34,6 +34,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 
 const PRIME_MODULE = [
   CardModule, 
@@ -113,7 +115,7 @@ const routes: Routes = [
       ProductsListComponent, 
       ProductsFormComponent, 
       UsersListComponent, 
-      UsersFormComponent
+      UsersFormComponent, OrdersListComponent, OrdersDetailComponent
     ],
     imports: [
       BrowserModule, 
