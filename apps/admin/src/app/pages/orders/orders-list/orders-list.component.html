@@ -13,19 +13,19 @@
         >
           <ng-template pTemplate="header">
               <tr>                  
-                  <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-                  <th>Icon</th>
-                  <th>Color</th>
+                  <th pSortableColumn="name">User <p-sortIcon field="user"></p-sortIcon></th>
+                  <th pSortableColumn="totalPrice">Total Price <p-sortIcon field="totalPrice"></p-sortIcon></th>
+                  <th pSortableColumn="dateOrdered">Date Ordered <p-sortIcon field="dateOrdered"></p-sortIcon></th>
+                  <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
                   <th></th>
               </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-category>
+          <ng-template pTemplate="body" let-order>
               <tr>                  
-                  <td>{{orders.name}}</td>
-                  <td style="text-align: center;"><i style="font-size: 2em;" class="pi " [ngClass]="'pi-' + orders.icon"></i></td>
-                  <td>
-                    <div [ngStyle]="{'background': orders.color}" class="color-round m-auto"></div>
-                  </td>
+                  <td>{{ order.user }}</td>
+                  <td>{{ order.totalPrice }}</td>
+                  <td>{{ order.dateOrdered }}</td>
+                  <td>{{ order.status }}</td>
                   <td class="flex justify-content-around">
                     <p-button                       
                       icon="pi pi-trash"

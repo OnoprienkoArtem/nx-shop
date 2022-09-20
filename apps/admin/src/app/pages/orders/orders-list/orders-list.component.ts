@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from '@bluebits/orders';
 
 @Component({
   selector: 'admin-orders-list',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersListComponent implements OnInit {
 
-  orders = [];
+  orders: Order[] = [];
 
   constructor() { }
 
