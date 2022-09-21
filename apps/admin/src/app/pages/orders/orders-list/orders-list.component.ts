@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '@bluebits/orders';
+import { Order, OrdersService } from '@bluebits/orders';
 
 @Component({
   selector: 'admin-orders-list',
@@ -11,9 +11,14 @@ export class OrdersListComponent implements OnInit {
 
   orders: Order[] = [];
 
-  constructor() { }
+  constructor(private ordersService: OrdersService,) { }
 
   ngOnInit(): void {
+    this.fetchOrders();
+  }
+
+  private fetchOrders(): void {
+    this.ordersService.getOrders().subscribe(orders => this.orders = orders);
   }
 
 }
