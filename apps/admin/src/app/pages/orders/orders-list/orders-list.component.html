@@ -25,7 +25,12 @@
                   <td>{{ order.user?.name }}</td>
                   <td>{{ order.totalPrice }}</td>
                   <td>{{ order.dateOrdered }}</td>
-                  <td><p-tag value="New"></p-tag>{{ order.status }}</td>
+                  <td>
+                    <p-tag 
+                      [value]="orderStatus[order.status].label"
+                      [severity]="orderStatus[order.status].color"
+                    ></p-tag>
+                  </td>
                   <td class="flex justify-content-around">
                     <p-button                       
                       icon="pi pi-trash"

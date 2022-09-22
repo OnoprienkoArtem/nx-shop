@@ -18,6 +18,10 @@ const ORDER_STATUS = {
   3: {
     label: 'Delivered',
     color: 'success'
+  },
+  4: {
+    label: 'Failed',
+    color: 'danger'
   }
 };
 
@@ -30,6 +34,7 @@ const ORDER_STATUS = {
 export class OrdersListComponent implements OnInit {
 
   orders: Order[] = [];
+  orderStatus = ORDER_STATUS;
 
   constructor(private ordersService: OrdersService,) { }
 
