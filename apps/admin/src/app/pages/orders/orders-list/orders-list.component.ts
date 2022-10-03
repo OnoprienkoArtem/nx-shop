@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Order, OrdersService } from '@bluebits/orders';
 
 
@@ -36,7 +37,10 @@ export class OrdersListComponent implements OnInit {
   orders: Order[] = [];
   orderStatus = ORDER_STATUS;
 
-  constructor(private ordersService: OrdersService,) { }
+  constructor(
+    private ordersService: OrdersService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.fetchOrders();
@@ -44,6 +48,10 @@ export class OrdersListComponent implements OnInit {
 
   private fetchOrders(): void {
     this.ordersService.getOrders().subscribe(orders => this.orders = orders);
+  }
+
+  showOrder(orderId: string) {
+    this.router.navigateByUrl(`orders/${orderId}`);
   }
 
 }
