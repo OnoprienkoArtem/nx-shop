@@ -16,15 +16,16 @@ export class OrdersDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchOrder();
+    
   }
 
   private fetchOrder() {
     this.route.params.pipe(
       filter(params => params['id']),
-      switchMap(params => {
+      switchMap(params => {       
         return this.ordersService.getOrder(params['id'])
       }),
-      tap(order => {
+      tap(order => {        
         this.order = order;
       }),
       take(1),
