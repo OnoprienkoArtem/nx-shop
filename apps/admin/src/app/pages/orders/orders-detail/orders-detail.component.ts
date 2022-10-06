@@ -26,6 +26,8 @@ export class OrdersDetailComponent implements OnInit {
         return this.ordersService.getOrder(params['id'])
       }),
       tap(order => {        
+        console.log(order);
+        
         this.order = order;
       }),
       take(1),
