@@ -30,12 +30,12 @@
 
     <p-fieldset styleClass="mb-4" legend="Order Items" [toggleable]="true" >
       <div class="grid mb-5">
-        <div class="col-2 text-bold">Name</div>
-        <div class="col-2">Brand</div>
-        <div class="col-2">Category</div>
-        <div class="col-2">Price</div>
-        <div class="col-2">Quantity</div>
-        <div class="col-2">Subtotal</div>
+        <div class="col-2 font-bold">Name</div>
+        <div class="col-2 font-bold">Brand</div>
+        <div class="col-2 font-bold">Category</div>
+        <div class="col-2 font-bold">Price</div>
+        <div class="col-2 font-bold">Quantity</div>
+        <div class="col-2 font-bold">Subtotal</div>
       </div>
       <div class="grid mb-5" *ngFor="let orderItem of order.orderItems">
         <div class="col-2">{{ orderItem.product.name }}</div>
@@ -44,6 +44,10 @@
         <div class="col-2">{{ orderItem.product.price }}</div>
         <div class="col-2">{{ orderItem.quantity }}</div>
         <div class="col-2">{{ orderItem.product.price * orderItem.quantity | currency }}</div>
+      </div>
+      <div class="grid" style="color: green">
+        <div class="col-2 col-offset-8 font-bold">Total Price</div>
+        <div class="col-2 font-bold">{{ order.totalPrice | currency }}</div>
       </div>
     </p-fieldset>
 
