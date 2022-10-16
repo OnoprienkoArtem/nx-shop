@@ -15,8 +15,7 @@ export class OrdersDetailComponent implements OnInit {
   constructor(private ordersService: OrdersService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.fetchOrder();
-    
+    this.fetchOrder();    
   }
 
   private fetchOrder() {

@@ -47,7 +47,11 @@ export class OrdersListComponent implements OnInit {
   }
 
   private fetchOrders(): void {
-    this.ordersService.getOrders().subscribe(orders => this.orders = orders);
+    this.ordersService.getOrders().subscribe(orders => {
+      this.orders = orders;
+      console.log('orders', this.orders);
+      
+    });
   }
 
   showOrder(orderId: string) {
