@@ -13,6 +13,7 @@ import { ORDER_STATUS } from '../order.constants';
 export class OrdersDetailComponent implements OnInit {
   order: Order;
   orderStatuses = [];
+  selectedStatus: any;
 
   constructor(private ordersService: OrdersService, private route: ActivatedRoute) { }
 
@@ -43,6 +44,14 @@ export class OrdersDetailComponent implements OnInit {
         name: ORDER_STATUS[key].label
       }
     })
+  }
+
+  onStatusChange(event) {
+    this.ordersService.updateOrder({status: event.value}, this.order.id).subscribe(order => {
+      console.log(order);
+    });
+    
+    
   }
 
 }

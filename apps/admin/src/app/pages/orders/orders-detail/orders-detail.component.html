@@ -21,6 +21,8 @@
             [options]="orderStatuses"
             [(ngModel)]="selectedStatus"
             optionLabel="name"
+            optionValue="id"
+            (onChange)="onStatusChange($event)"
           ></p-dropdown>
         </div>
         <div class="col-4">
