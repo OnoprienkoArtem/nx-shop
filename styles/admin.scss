@@ -9,7 +9,6 @@
 @import '~primeicons/primeicons.css';
 @import '~primeng/resources/themes/saga-blue/theme.css';
 @import '~primeng/resources/primeng.min.css';
-@import './base/configuration.scss';
 @import '~primeflex/primeflex.css';
 
 // Shared
@@ -17,3 +16,4 @@
 
 //Libs
 @import './libs/ui/ui.scss';
+@import './libs/users/users.scss';

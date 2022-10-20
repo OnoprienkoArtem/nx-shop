@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
@@ -36,6 +36,8 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { FieldsetModule } from 'primeng/fieldset';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
+
+import { UsersModule } from '@bluebits/users';
 
 
 const PRIME_MODULE = [
@@ -135,6 +137,7 @@ const routes: Routes = [
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
+      UsersModule,
       RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }), 
       ...PRIME_MODULE
     ],
