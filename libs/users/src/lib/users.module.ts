@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 
+import {InputTextModule} from "primeng/inputtext";
+import {ButtonModule} from "primeng/button";
+
 export const usersRoutes: Routes = [
   {
     path: 'login',
@@ -11,7 +14,7 @@ export const usersRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(usersRoutes)],
+    imports: [CommonModule, RouterModule.forChild(usersRoutes), InputTextModule, ButtonModule],
     declarations: [
       LoginComponent
     ]
