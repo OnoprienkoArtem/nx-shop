@@ -7,22 +7,29 @@
       <div class="col-6 p-5">
         <h3>Welcome!</h3>
         <h2>Login Page</h2>
-        <form>
+        <form [formGroup]="loginFormGroup">
           <div class="grid mt-6">
             <div class="col-12">
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                <input type="text" pInputText placeholder="Email">
+                <input type="text" formControlName="email" pInputText placeholder="Email">
               </div>
+              <small *ngIf="loginForm.email.invalid && isSubmitted" class="p-error">
+                <span *ngIf="loginForm.email.errors.required">Email is required.</span>
+                <span *ngIf="loginForm.email.errors.email">Email is invalid.</span>
+              </small>
             </div>
             <div class="col-12">
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                <input type="password" pInputText placeholder="Password">
+                <input type="password" formControlName="password" pInputText placeholder="Password">
               </div>
+              <small *ngIf="loginForm.password.invalid && isSubmitted" class="p-error">
+                <span *ngIf="loginForm.password.errors.required">Password is required.</span>
+              </small>
             </div>
             <div class="col-12">
-              <p-button label="Submit" styleClass="full-btn"></p-button>
+              <p-button label="Submit" styleClass="full-btn" (onClick)="onSubmit()"></p-button>
             </div>
           </div>
         </form>
