@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'users-login',
@@ -8,7 +9,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   ]
 })
 export class LoginComponent implements OnInit {
-  loginFormGroup: FormGroup | undefined;
+  loginFormGroup!: FormGroup;
   isSubmitted = false;
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService) { }
@@ -30,5 +31,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.isSubmitted = true;
+
+    if (this.loginFormGroup.invalid) return;
+
+    this.auth.login(this.loginForm['email'].value, this.loginForm['password'].value).subscribe(user => {
+      console.log(user);
+    });
   }
 }
