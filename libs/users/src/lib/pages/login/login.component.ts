@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup | undefined;
   isSubmitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.initLoginForm();
