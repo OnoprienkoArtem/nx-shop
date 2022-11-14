@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {LocalstorageService} from "../../services/localstorage.service";
 
 @Component({
   selector: 'users-login',
@@ -15,7 +16,11 @@ export class LoginComponent implements OnInit {
   authError = false;
   authMessage = 'Email or password are wrong!';
 
-  constructor(private formBuilder: FormBuilder, private auth: AuthService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: AuthService,
+    private localstorageService: LocalstorageService,
+  ) { }
 
   ngOnInit(): void {
     this.initLoginForm();
@@ -41,6 +46,8 @@ export class LoginComponent implements OnInit {
       user => {
         console.log(user);
         this.authError = false;
+
+        this.localstorageService.setToken(user.token || '');
       },
       (error: HttpErrorResponse) => {
         this.authError = true;
