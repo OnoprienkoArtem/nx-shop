@@ -37,7 +37,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
-import { UsersModule } from '@bluebits/users';
+import {AuthGuard, UsersModule} from '@bluebits/users';
 
 
 const PRIME_MODULE = [
@@ -63,6 +63,7 @@ const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
