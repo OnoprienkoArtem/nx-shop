@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
@@ -37,7 +37,9 @@ import { FieldsetModule } from 'primeng/fieldset';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
-import {AuthGuard, UsersModule} from '@bluebits/users';
+import { AuthGuard, JwtInterceptor, UsersModule } from '@bluebits/users';
+
+import { CategoriesService } from "@bluebits/products";
 
 
 const PRIME_MODULE = [
@@ -142,7 +144,16 @@ const routes: Routes = [
       RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
       ...PRIME_MODULE
     ],
-    providers: [MessageService, ConfirmationService],
+    providers: [
+      CategoriesService,
+      MessageService,
+      ConfirmationService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptor,
+        multi: true,
+      }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
