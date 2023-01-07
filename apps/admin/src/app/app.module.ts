@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -37,9 +36,10 @@ import { FieldsetModule } from 'primeng/fieldset';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
-import { AuthGuard, JwtInterceptor, UsersModule } from '@bluebits/users';
+import { JwtInterceptor, UsersModule } from '@bluebits/users';
 
 import { CategoriesService } from "@bluebits/products";
+import {AppRoutingModule} from "./app-routing.module";
 
 
 const PRIME_MODULE = [
@@ -59,64 +59,6 @@ const PRIME_MODULE = [
   TagModule,
   InputMaskModule,
   FieldsetModule
-];
-
-const routes: Routes = [
-  {
-    path: '',
-    component: ShellComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'categories',
-        component: CategoriesListComponent
-      },
-      {
-        path: 'categories/form',
-        component: CategoriesFormComponent
-      },
-      {
-        path: 'categories/form/:id',
-        component: CategoriesFormComponent
-      },
-      {
-        path: 'products',
-        component: ProductsListComponent
-      },
-      {
-        path: 'products/form',
-        component: ProductsFormComponent
-      },
-      {
-        path: 'products/form/:id',
-        component: ProductsFormComponent
-      },
-      {
-        path: 'users',
-        component: UsersListComponent
-      },
-      {
-        path: 'users/form',
-        component: UsersFormComponent
-      },
-      {
-        path: 'users/form/:id',
-        component: UsersFormComponent
-      },
-      {
-        path: 'orders',
-        component: OrdersListComponent
-      },
-      {
-        path: 'orders/:id',
-        component: OrdersDetailComponent
-      }
-    ]
-  }
 ];
 
 @NgModule({
@@ -141,7 +83,7 @@ const routes: Routes = [
       FormsModule,
       ReactiveFormsModule,
       UsersModule,
-      RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
+      AppRoutingModule,
       ...PRIME_MODULE
     ],
     providers: [
