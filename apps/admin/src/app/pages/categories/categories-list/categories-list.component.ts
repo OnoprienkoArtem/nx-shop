@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/products';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { pipe, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'admin-categories-list',
@@ -9,13 +10,14 @@ import { MessageService, ConfirmationService } from 'primeng/api';
   styles: [
   ]
 })
-export class CategoriesListComponent implements OnInit {
-
+export class CategoriesListComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
+
+  unSubscription$: Subject = new Subject();
 
   constructor(
     private categoriesService: CategoriesService,
-    private messageService: MessageService,  
+    private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private router: Router
   ) { }
@@ -24,8 +26,17 @@ export class CategoriesListComponent implements OnInit {
     this.fetchCategories();
   }
 
+  ngOnDestroy(): void {
+    this.unSubscription$.next();
+    this.unSubscription$.complete();
+  }
+
   private fetchCategories(): void {
-    this.categoriesService.getCategories().subscribe(categories => this.categories = categories);
+    this.categoriesService.getCategories()
+      .pipe(
+        takeUntil(this.unSubscription$),
+      )
+      .subscribe(categories => this.categories = categories);
   }
 
   deleteCategory(category: Category): void {
@@ -34,19 +45,22 @@ export class CategoriesListComponent implements OnInit {
       header: `Delete '${category.name}' category`,
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.categoriesService.deleteCategory(category.id).subscribe({
-          next: () => {
-            this.messageService.add({severity: 'success', summary: 'Success', detail: `Category ${category.name} is deleted`});
-            this.fetchCategories();
-          },
-          error: () => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is not deleted'})
-        });
-      },      
+        this.categoriesService.deleteCategory(category.id)
+          .pipe(
+            takeUntil(this.unSubscription$),
+          )
+          .subscribe({
+            next: () => {
+              this.messageService.add({severity: 'success', summary: 'Success', detail: `Category ${category.name} is deleted`});
+              this.fetchCategories();
+            },
+            error: () => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Category is not deleted'})
+          });
+      },
     });
-  }  
+  }
 
   updateCategory(category: Category): void {
     this.router.navigateByUrl(`categories/form/${category.id}`);
   }
-
 }
