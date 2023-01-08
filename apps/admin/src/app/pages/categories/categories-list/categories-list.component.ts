@@ -13,7 +13,7 @@ import { pipe, Subject, takeUntil } from 'rxjs';
 export class CategoriesListComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
 
-  unSubscription$: Subject = new Subject();
+  unSubscription$ = new Subject();
 
   constructor(
     private categoriesService: CategoriesService,
@@ -27,7 +27,7 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unSubscription$.next();
+    this.unSubscription$.next(true);
     this.unSubscription$.complete();
   }
 
