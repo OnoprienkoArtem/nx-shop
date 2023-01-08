@@ -7,8 +7,7 @@ export const productsRoutes: Route[] = [];
 
 @NgModule({
     imports: [CommonModule, RouterModule],
-    declarations: [
-      ProductsSearchComponent
-    ]
+    declarations: [ProductsSearchComponent],
+    exports: [ProductsSearchComponent]
 })
 export class ProductsModule {}
