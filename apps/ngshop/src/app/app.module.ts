@@ -8,11 +8,11 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-
-import { UiModule } from '@bluebits/ui';
-import {AccordionModule} from 'primeng/accordion';
 import { NavComponent } from './shared/nav/nav.component';
+
+import { AccordionModule } from 'primeng/accordion';
 import { ProductsModule } from '@bluebits/products';
+import { UiModule } from '@bluebits/ui';
 
 const routes: Routes = [
     {
@@ -37,10 +37,10 @@ const routes: Routes = [
     imports: [
       BrowserModule,
       RouterModule.forRoot(routes),
-      UiModule,
       AccordionModule,
       BrowserAnimationsModule,
       ProductsModule,
+      UiModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
