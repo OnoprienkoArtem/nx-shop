@@ -13,6 +13,7 @@ import { NavComponent } from './shared/nav/nav.component';
 import { AccordionModule } from 'primeng/accordion';
 import { ProductsModule } from '@bluebits/products';
 import { UiModule } from '@bluebits/ui';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
     {
@@ -38,6 +39,7 @@ const routes: Routes = [
       BrowserModule,
       RouterModule.forRoot(routes),
       AccordionModule,
+      HttpClientModule,
       BrowserAnimationsModule,
       ProductsModule,
       UiModule,
