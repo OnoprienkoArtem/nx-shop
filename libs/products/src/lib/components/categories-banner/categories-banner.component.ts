@@ -18,10 +18,7 @@ export class CategoriesBannerComponent implements OnInit, OnDestroy {
     this.categoriesService.getCategories()
       .pipe(
         takeUntil(this.unSub$),
-        tap(categories => {
-          console.log(categories);
-          this.categories = categories
-        })
+        tap(categories => this.categories = categories)
       )
       .subscribe();
   }
