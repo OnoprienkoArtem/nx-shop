@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '@bluebits/products';
+import { CategoriesService, Category, Product } from '@bluebits/products';
 import { tap } from 'rxjs';
 import { ProductsService } from '../../services/products.service';
 
@@ -10,17 +10,30 @@ import { ProductsService } from '../../services/products.service';
 export class ProductsListComponent implements OnInit {
 
   products: Product[] = [];
+  categories: Category[] = [];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(
+    private productsService: ProductsService,
+    private categoryService: CategoriesService,
+  ) { }
 
   ngOnInit(): void {
     this.getProducts();
+    this.getCategories();
   }
 
-  private getProducts() {
+  private getProducts(): void {
     this.productsService.getProducts()
       .pipe(
         tap(resProducts => this.products = resProducts)
+      )
+      .subscribe();
+  }
+
+  private getCategories(): void {
+    this.categoryService.getCategories()
+      .pipe(
+        tap(resCategories => this.categories = resCategories)
       )
       .subscribe();
   }
