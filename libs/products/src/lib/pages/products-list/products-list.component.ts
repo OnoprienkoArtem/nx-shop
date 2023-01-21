@@ -11,7 +11,6 @@ export class ProductsListComponent implements OnInit {
 
   products: Product[] = [];
   categories: Category[] = [];
-  checked = true;
 
   constructor(
     private productsService: ProductsService,
@@ -27,12 +26,13 @@ export class ProductsListComponent implements OnInit {
     const selectedCategories = this.categories
       .filter(category => category.checked)
       .map(category => category.id);
-    console.log(selectedCategories);
+
+    this.getProducts(selectedCategories);
 
   }
 
-  private getProducts(): void {
-    this.productsService.getProducts()
+  private getProducts(categoiesFiltered?: string[]): void {
+    this.productsService.getProducts(categoiesFiltered)
       .pipe(
         tap(resProducts => this.products = resProducts)
       )
