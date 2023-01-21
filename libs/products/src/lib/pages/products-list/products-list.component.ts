@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService, Category, Product } from '@bluebits/products';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -11,6 +11,7 @@ export class ProductsListComponent implements OnInit {
 
   products: Product[] = [];
   categories: Category[] = [];
+  checked = true;
 
   constructor(
     private productsService: ProductsService,
@@ -20,6 +21,14 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.getCategories();
+  }
+
+  categoryFilter(): void {
+    const selectedCategories = this.categories
+      .filter(category => category.checked)
+      .map(category => category.id);
+    console.log(selectedCategories);
+
   }
 
   private getProducts(): void {
