@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CategoriesService, Category, Product } from '@bluebits/products';
 import { map, tap } from 'rxjs';
 import { ProductsService } from '../../services/products.service';
@@ -11,14 +12,21 @@ export class ProductsListComponent implements OnInit {
 
   products: Product[] = [];
   categories: Category[] = [];
+  isCategoryPage!: boolean;
 
   constructor(
     private productsService: ProductsService,
     private categoryService: CategoriesService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.route.params.subscribe(params => {
+      params['categoryid'] ? this.getProducts([params['categoryid']]) : this.getProducts();
+      this.isCategoryPage = params['categoryid'] ? true : false;
+    });
+
+
     this.getCategories();
   }
 
