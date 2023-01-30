@@ -10,6 +10,7 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
 
+  quantity: number;
   product!: Product;
   unSub$: Subject<any> = new Subject();
 
@@ -31,13 +32,17 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.unSub$.complete();
   }
 
-  private getProduct(id: string) {
+  private getProduct(id: string): void {
     this.productsService.getProduct(id)
       .pipe(
         tap(resProduct => this.product = resProduct),
         takeUntil(this.unSub$),
       )
       .subscribe();
+  }
+
+  addProductToCart(): void {
+
   }
 
 }

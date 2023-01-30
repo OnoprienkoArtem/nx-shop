@@ -10,6 +10,8 @@ import { ProductsListComponent } from './pages/products-list/products-list.compo
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { RatingModule } from 'primeng/rating';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 export const productsRoutes: Routes = [
   {
@@ -33,6 +35,9 @@ export const productsRoutes: Routes = [
       ButtonModule,
       CheckboxModule,
       FormsModule,
+      RatingModule,
+      InputNumberModule,
+
     ],
     declarations: [
       ProductsSearchComponent,
