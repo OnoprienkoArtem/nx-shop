@@ -1,10 +1,10 @@
-<div class="product-details">
+<div class="product-details" *ngIf="product">
   <div class="grid">
     <div class="col-6">
       <!-- <ui-gallery> -->
     </div>
-    <div class="col-6 product" *ngIf="product">
-      <h2>{{ product.name }}</h2>
+    <div class="col-6 product">
+      <h2 class="product-name">{{ product.name }}</h2>
       <p class="product-desc">
         {{ product.description }}
       </p>
@@ -16,7 +16,7 @@
         <span class="price-before">{{ product.price + 18 | currency }}</span>
       </div>
       <div class="product-quantity">
-        <div class="field col-12 md:col-3">
+        <div class="field col-12 md:col-3 p-0">
           <label for="quantity">Quantity</label>
           <p-inputNumber
             [(ngModel)]="quantity"
@@ -35,7 +35,7 @@
           pRipple
           type="button"
           label="Buy NOw"
-          class="p-button-rounded p-mr-2"
+          class="p-button-rounded mr-3"
         ></button>
         <button
           pButton
@@ -46,6 +46,11 @@
           (click)="addProductToCart()"
         ></button>
       </div>
+    </div>
+  </div>
+  <div class="grid product-rich-description">
+    <div class="col-12">
+      <div [innerHTML]="product.richDescription"></div>
     </div>
   </div>
 </div>
