@@ -7,11 +7,14 @@ import { FeaturedProductsComponent } from './components/featured-products/featur
 import { ButtonModule } from 'primeng/button';
 import { ProtuctItemComponent } from './components/product-item/product-item.component';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
+
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { RatingModule } from 'primeng/rating';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { UiModule } from '@bluebits/ui';
+
 
 export const productsRoutes: Routes = [
   {
@@ -37,7 +40,7 @@ export const productsRoutes: Routes = [
       FormsModule,
       RatingModule,
       InputNumberModule,
-
+      UiModule,
     ],
     declarations: [
       ProductsSearchComponent,
