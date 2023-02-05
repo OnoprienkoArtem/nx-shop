@@ -10,7 +10,7 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
 
-  quantity: number;
+  quantity = 0;
   product!: Product;
   unSub$: Subject<any> = new Subject();
 
