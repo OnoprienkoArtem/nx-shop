@@ -13,6 +13,11 @@ export class GalleryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.images);
+
+    if (this.images.length) {
+      this.selectedImage = this.images[0];
+    }
   }
 
 }
