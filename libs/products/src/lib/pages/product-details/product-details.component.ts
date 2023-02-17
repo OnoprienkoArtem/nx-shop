@@ -41,8 +41,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  addProductToCart(): void {
-
-  }
+  addProductToCart(): void {}
 
 }
