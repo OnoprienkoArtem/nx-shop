@@ -6,18 +6,19 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GalleryComponent implements OnInit {
 
-  selectedImage: string;
+  selectedImageUrl = 'https://www.slpa.lk/application_resources/images/default.png';
 
-  @Input() images!: string[];
+  @Input() images: string[] = [];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    console.log(this.images);
-
     if (this.images.length) {
-      this.selectedImage = this.images[0];
+      this.selectedImageUrl = this.images[0];
     }
   }
 
+  changeSelectedImage(imageUrl: string) {
+    this.selectedImageUrl = imageUrl;
+  }
 }
