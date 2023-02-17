@@ -10,10 +10,12 @@ export class GalleryComponent implements OnInit {
 
   @Input() images: string[] = [];
 
-  constructor() {}
+  get hasImages(): boolean {
+    return this.images?.length > 0;
+  }
 
   ngOnInit(): void {
-    if (this.images.length) {
+    if (this.hasImages) {
       this.selectedImageUrl = this.images[0];
     }
   }
