@@ -13,6 +13,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { ProductsModule } from '@bluebits/products';
 import { UiModule } from '@bluebits/ui';
 import { HttpClientModule } from '@angular/common/http';
+import { OrdersModule } from '@bluebits/orders';
 
 const routes: Routes = [
     {
@@ -37,6 +38,7 @@ const routes: Routes = [
       BrowserAnimationsModule,
       ProductsModule,
       UiModule,
+      OrdersModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
