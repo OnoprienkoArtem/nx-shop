@@ -1,3 +1,4 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Cart, CartItem } from '../models/cart';
 
@@ -24,7 +25,18 @@ export class CartService {
 
   setCartItem(cartItem: CartItem): Cart {
     const cart = this.getCart();
-    cart.items?.push(cartItem);
+    const cartItemExist = cart.items?.find(i => i.productId === cartItem.productId);
+    if (cartItemExist) {
+      cart.items?.map(item => {
+        if (item.productId === cartItem.productId) {
+          item.quantity = item.quantity + cartItem.quantity;
+          return item;
+        }
+      })
+    } else {
+      cart.items?.push(cartItem);
+    }
+
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     return cart;
   }
