@@ -12,11 +12,14 @@ export class CartService {
   constructor() { }
 
   initCartLocalstorage() {
-    const inialCart = {
-      items: []
-    };
+    const cart: Cart = this.getCart();
+    if (!cart) {
+      const inialCart = {
+        items: []
+      };
 
-    localStorage.setItem(CART_KEY, JSON.stringify(inialCart));
+      localStorage.setItem(CART_KEY, JSON.stringify(inialCart));
+    }
   }
 
   getCart(): Cart {
@@ -27,7 +30,7 @@ export class CartService {
     const cart = this.getCart();
     const cartItemExist = cart.items?.find(i => i.productId === cartItem.productId);
     if (cartItemExist) {
-      cart.items?.map(item => {
+      cart.items?.forEach(item => {
         if (item.productId === cartItem.productId) {
           item.quantity = item.quantity + cartItem.quantity;
           return item;
