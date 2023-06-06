@@ -1,5 +1,5 @@
 export class Cart {
-  items?: CartItem[];
+  items: CartItem[];
 }
 
 export class CartItem {
