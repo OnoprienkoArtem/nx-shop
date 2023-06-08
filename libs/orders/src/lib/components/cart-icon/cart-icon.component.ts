@@ -14,13 +14,13 @@ export class CartIconComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private messageService: MessageService
+    private messageService: MessageService,
     ) { }
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe(cart => {
       this.cartCount = cart?.items.length ?? 0;
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product was add' });
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product was add successfully!' });
     });
   }
 

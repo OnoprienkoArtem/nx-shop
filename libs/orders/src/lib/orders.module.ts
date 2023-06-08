@@ -6,6 +6,8 @@ import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 import { BadgeModule } from 'primeng/badge';
 import { ToastModule } from 'primeng/toast';
 
+import { MessageService } from 'primeng/api';
+
 export const ordersRoutes: Route[] = [];
 
 @NgModule({
@@ -16,10 +18,13 @@ export const ordersRoutes: Route[] = [];
       ToastModule,
     ],
     declarations: [
-      CartIconComponent
+      CartIconComponent,
     ],
     exports: [
-      CartIconComponent
+      CartIconComponent,
+    ],
+    providers: [
+      MessageService,
     ]
 })
 export class OrdersModule {
