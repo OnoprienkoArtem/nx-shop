@@ -4,6 +4,7 @@ import { RouterModule, Route } from '@angular/router';
 import { CartService } from './services/cart.service';
 import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 import { BadgeModule } from 'primeng/badge';
+import { ToastModule } from 'primeng/toast';
 
 export const ordersRoutes: Route[] = [];
 
@@ -12,6 +13,7 @@ export const ordersRoutes: Route[] = [];
       CommonModule,
       RouterModule,
       BadgeModule,
+      ToastModule,
     ],
     declarations: [
       CartIconComponent

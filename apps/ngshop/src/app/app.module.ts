@@ -10,6 +10,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
 
 import { AccordionModule } from 'primeng/accordion';
+import { ToastModule } from 'primeng/toast';
+
 import { ProductsModule } from '@bluebits/products';
 import { UiModule } from '@bluebits/ui';
 import { HttpClientModule } from '@angular/common/http';
@@ -39,6 +41,7 @@ const routes: Routes = [
       ProductsModule,
       UiModule,
       OrdersModule,
+      ToastModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
