@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
+
 import { CartService } from './services/cart.service';
-import { CartIconComponent } from './components/cart-icon/cart-icon.component';
+
 import { BadgeModule } from 'primeng/badge';
 import { ToastModule } from 'primeng/toast';
-
 import { MessageService } from 'primeng/api';
 
-export const ordersRoutes: Route[] = [];
+import { CartIconComponent } from './components/cart-icon/cart-icon.component';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
+
+export const ordersRoutes: Route[] = [
+  {
+    path: 'cart',
+    component: CartPageComponent,
+  }
+];
 
 @NgModule({
     imports: [
@@ -16,12 +24,15 @@ export const ordersRoutes: Route[] = [];
       RouterModule,
       BadgeModule,
       ToastModule,
+      RouterModule.forChild(ordersRoutes),
     ],
     declarations: [
       CartIconComponent,
+      CartPageComponent,
     ],
     exports: [
       CartIconComponent,
+      CartPageComponent,
     ],
     providers: [
       MessageService,
