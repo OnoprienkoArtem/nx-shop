@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem, CartService } from '@bluebits/orders';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
@@ -10,13 +11,14 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
 
-  quantity = 0;
+  quantity = 1;
   product!: Product;
   unSub$: Subject<any> = new Subject();
 
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute,
+    private cartService: CartService,
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,12 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  addProductToCart(): void {}
+  addProductToCart(): void {
+    const cartItem: CartItem = {
+      productId: this.product.id,
+      quantity: this.quantity,
+    }
+    this.cartService.setCartItem(cartItem);
+  }
 
 }
