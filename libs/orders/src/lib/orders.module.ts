@@ -7,9 +7,11 @@ import { CartService } from './services/cart.service';
 import { BadgeModule } from 'primeng/badge';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 
 import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
+
 
 export const ordersRoutes: Route[] = [
   {
@@ -24,6 +26,7 @@ export const ordersRoutes: Route[] = [
       RouterModule,
       BadgeModule,
       ToastModule,
+      ButtonModule,
       RouterModule.forChild(ordersRoutes),
     ],
     declarations: [

@@ -1,1 +1,19 @@
-<p>cart-page works!</p>
+<div class="cart-page">
+  <div class="p-grid">
+    <div class="p-col-8">
+      <div>
+        <p-button
+          label="Continueshopping"
+          icon="pi pi-arrow-left"
+          (onClick)="backToShop()"
+      ></p-button>
+      </div>
+      <div>
+        <h4>My cart: {{ 1 }} item(s).</h4>
+      </div>
+      <div class="cart-shipping">
+        Shipping after the payment, Delivery time : 1 to 4 working days.
+      </div>
+    </div>
+  </div>
+</div>
