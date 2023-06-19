@@ -1,6 +1,6 @@
 <div class="cart-page">
-  <div class="p-grid">
-    <div class="p-col-8">
+  <div class="grid">
+    <div class="col-8">
       <div>
         <p-button
           label="Continue shopping"
@@ -14,18 +14,37 @@
       <div class="cart-shipping mb-5">
         Shipping after the payment, Delivery time : 1 to 4 working days.
       </div>
-      <div class="cart-item">
-        <div class="p-grid">
-          <div class="p-col-2 cart-item-image">
-            <img src="" alt="">
+      <div class="cart-item p-fluid">
+        <div class="grid">
+          <div class="col-2 cart-item-image">
+            <img src="https://cdn3.iconfinder.com/data/icons/shopping-and-ecommerce-29/90/empty_cart-512.png" alt="">
           </div>
-          <div class="p-col-7">
-            <div class="art-item-name">Product Name</div>
+          <div class="col-7">
+            <div class="cart-item-name">Product Name</div>
             <div class="cart-item-price">{{ 250 | currency }}</div>
+            <div class="cart-item-remove">
+              <p-button icon="pi pi-trash" (onClick)="deleteCartItem()"></p-button>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="field cart-item-quantity">
+              <p-inputNumber
+                mode="decimal"
+                [showButtons]="true"
+                inputId="quantity"
+                [min]="1"
+                [max]="100"
+              >
+              </p-inputNumber>
+            </div>
+            <div class="cart-item-subtotal">
+              Subtotal:
+              <span class="cart-item-subtotal-value">{{ 200 | currency }}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="p-col-4">order summary</div>
+    <div class="col-4">order summary</div>
   </div>
 </div>

@@ -20,4 +20,8 @@ export class CartPageComponent implements OnInit {
     this.router.navigate(['/products']);
   }
 
+  deleteCartItem(): void {
+
+  }
+
 }
