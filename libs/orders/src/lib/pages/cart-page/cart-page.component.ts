@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { concatMap, map, tap } from 'rxjs';
+import { concatMap, map, take, tap } from 'rxjs';
 import { CartItemDetailed } from '../../models/cart';
 import { CartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/orders.service';
@@ -14,6 +14,7 @@ import { OrdersService } from '../../services/orders.service';
 export class CartPageComponent implements OnInit {
 
   cartItemsDetailed: CartItemDetailed[] = [];
+  cartCount = 0;
 
   constructor(
     private router: Router,
@@ -35,8 +36,9 @@ export class CartPageComponent implements OnInit {
   }
 
   private _getCartDetails() {
-    this.cartService.cart$.pipe().subscribe(respCart => {
+    this.cartService.cart$.pipe(take(1)).subscribe(respCart => {
       this.cartItemsDetailed = [];
+      this.cartCount = respCart?.items?.length ?? 0;
       respCart.items?.forEach(cartItem => {
         this.ordersService.getProduct(cartItem.productId).subscribe(respProduct => {
           this.cartItemsDetailed.push({
