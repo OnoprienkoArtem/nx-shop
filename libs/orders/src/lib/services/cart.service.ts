@@ -47,4 +47,13 @@ export class CartService {
     this.cart$.next(cart);
     return cart;
   }
+
+  deleteCartItem(productId: string): void {
+    const cart = this.getCart();
+    const newCart = cart.items?.filter(item => item.productId !== productId);
+
+    cart.items = newCart;
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    this.cart$.next(cart);
+  }
 }

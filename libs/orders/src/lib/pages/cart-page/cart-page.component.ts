@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { concatMap } from 'rxjs';
+import { concatMap, map, tap } from 'rxjs';
 import { CartItemDetailed } from '../../models/cart';
 import { CartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/orders.service';
@@ -30,12 +30,14 @@ export class CartPageComponent implements OnInit {
     this.router.navigate(['/products']);
   }
 
-  deleteCartItem(): void {
+  deleteCartItem(cartItem: any): void {
+    this.cartService.deleteCartItem(cartItem?.product?.id);
   }
 
   private _getCartDetails() {
     this.cartService.cart$.pipe().subscribe(respCart => {
-      respCart.items.forEach(cartItem => {
+      this.cartItemsDetailed = [];
+      respCart.items?.forEach(cartItem => {
         this.ordersService.getProduct(cartItem.productId).subscribe(respProduct => {
           this.cartItemsDetailed.push({
             product: respProduct,
