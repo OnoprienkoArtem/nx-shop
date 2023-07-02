@@ -46,7 +46,7 @@ export class OrdersService {
     );
   }
 
-  getProduct(productId: string): Observable<unknown> {
-    return this.http.get<unknown>(`${this.apiUrlProducts}/${productId}`);
+  getProduct(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrlProducts}/${productId}`);
   }
 }

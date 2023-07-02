@@ -2,7 +2,7 @@
   <h3>Order Summary</h3>
   <div class="summary-price">
     <span>Items Price</span>
-    <span>{{ 5 | currency }}</span>
+    <span>{{ totalPrice | currency }}</span>
   </div>
   <div class="summary-price">
     <span>Packing & Shipping</span>
@@ -11,7 +11,7 @@
   <div class="to-checkout">
     <div class="summary-price">
       <span>Total Price</span>
-      <span>{{ 55 | currency }}</span>
+      <span>{{ totalPrice | currency }}</span>
     </div>
     <div class="checkout-button">
       <p-button label="Checkout"></p-button>
