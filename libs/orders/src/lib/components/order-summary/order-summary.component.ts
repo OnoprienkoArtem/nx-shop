@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { filter, Subject, switchMap, take, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subject, take, takeUntil } from 'rxjs';
 import { CartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/orders.service';
 
@@ -13,7 +14,8 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
 
   constructor(
     private cartService: CartService,
-    private orderService: OrdersService
+    private orderService: OrdersService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +25,10 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.endSubs$.next(true);
     this.endSubs$.complete();
+  }
+
+  navigateToCheckout() {
+    this.router.navigate(['/checkout']);
   }
 
   private _getOrderSummary() {

@@ -14,12 +14,17 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { FormsModule } from '@angular/forms';
+import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 
 
 export const ordersRoutes: Route[] = [
   {
     path: 'cart',
     component: CartPageComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutPageComponent,
   }
 ];
 
@@ -38,6 +43,7 @@ export const ordersRoutes: Route[] = [
       CartIconComponent,
       CartPageComponent,
       OrderSummaryComponent,
+      CheckoutPageComponent,
     ],
     exports: [
       CartIconComponent,
