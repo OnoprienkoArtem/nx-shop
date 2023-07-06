@@ -13,6 +13,7 @@ import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { FormsModule } from '@angular/forms';
 
 
 export const ordersRoutes: Route[] = [
@@ -30,6 +31,7 @@ export const ordersRoutes: Route[] = [
       ToastModule,
       ButtonModule,
       InputNumberModule,
+      FormsModule,
       RouterModule.forChild(ordersRoutes),
     ],
     declarations: [
