@@ -9,6 +9,6 @@ export class CartItem {
 
 
 export class CartItemDetailed {
-  product?: unknown;
+  product?: any;
   quantity?: number;
 }

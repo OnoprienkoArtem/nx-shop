@@ -29,13 +29,18 @@ export class CartService {
     return JSON.parse(localStorage.getItem(CART_KEY) as string);
   }
 
-  setCartItem(cartItem: CartItem): Cart {
+  setCartItem(cartItem: CartItem, updateCartItem?: boolean): Cart {
     const cart = this.getCart();
     const cartItemExist = cart.items?.find(i => i.productId === cartItem.productId);
     if (cartItemExist) {
       cart.items?.forEach(item => {
         if (item.productId === cartItem.productId) {
-          item.quantity = item.quantity + cartItem.quantity;
+          if (updateCartItem) {
+            item.quantity = cartItem.quantity;
+          } else {
+            item.quantity = item.quantity + cartItem.quantity;
+          }
+
           return item;
         }
       })
