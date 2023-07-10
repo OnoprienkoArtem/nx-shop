@@ -32,7 +32,7 @@ export class UsersFormComponent implements OnInit {
     this.checkEditMode();
   }
 
-  private getCountries(): void {    
+  private getCountries(): void {
     this.countries = this.usersService.getCountries();
   }
 
@@ -54,7 +54,7 @@ export class UsersFormComponent implements OnInit {
       zip: this.userForm['zip'].value,
       city: this.userForm['city'].value,
       country: this.userForm['country'].value,
-    };    
+    };
 
     if (this.editMode) {
       this.updateUser(user);
@@ -64,7 +64,7 @@ export class UsersFormComponent implements OnInit {
   }
 
   private initUserForm() {
-    this.form = this.formBuilder.group({      
+    this.form = this.formBuilder.group({
       name: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],

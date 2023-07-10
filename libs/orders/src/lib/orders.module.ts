@@ -8,12 +8,15 @@ import { BadgeModule } from 'primeng/badge';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputMaskModule } from 'primeng/inputmask';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 
 
@@ -36,6 +39,10 @@ export const ordersRoutes: Route[] = [
       ToastModule,
       ButtonModule,
       InputNumberModule,
+      InputTextModule,
+      InputMaskModule,
+      DropdownModule,
+      ReactiveFormsModule,
       FormsModule,
       RouterModule.forChild(ordersRoutes),
     ],
