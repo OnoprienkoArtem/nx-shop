@@ -35,7 +35,10 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   placeOrder(): void {
-
+    this.isSubmitted = true;
+    if (this.checkoutForm['invalid']) {
+      return;
+    }
   }
 
   initCheckoutForm(): void {
