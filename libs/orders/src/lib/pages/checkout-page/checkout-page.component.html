@@ -9,42 +9,42 @@
           <div class="field col-4">
             <label for="name">Name</label>
             <input formControlName="name" id="name" type="text" pInputText />
-            <small *ngIf="userForm['name'].invalid && isSubmitted" class="p-error">Name is required</small>
+            <small *ngIf="checkoutForm['name'].invalid && isSubmitted" class="p-error">Name is required</small>
           </div>
           <div class="field col-4">
             <label for="email">Email</label>
             <input formControlName="email" id="email" type="text" pInputText />
-            <small *ngIf="userForm['email'].invalid && isSubmitted" class="p-error">
-              <span *ngIf="userForm['email'].errors.required">Email is required</span>
-              <span *ngIf="userForm['email'].errors.email">Email is invalid</span>
+            <small *ngIf="checkoutForm['email'].invalid && isSubmitted" class="p-error">
+              <span *ngIf="checkoutForm['email'].errors.required">Email is required</span>
+              <span *ngIf="checkoutForm['email'].errors.email">Email is invalid</span>
             </small>
           </div>
           <div class="field col-4">
             <label for="color">Phone</label><br />
             <p-inputMask mask="(999) 999-9999" formControlName="phone" placeholder="(999) 999-9999"></p-inputMask>
-            <small *ngIf="userForm['phone'].invalid && isSubmitted" class="p-error">Phone is required</small>
+            <small *ngIf="checkoutForm['phone'].invalid && isSubmitted" class="p-error">Phone is required</small>
           </div>
         </div>
         <div class="p-fluid formgrid grid">
           <div class="field col-4">
             <label for="street">Street</label>
             <input formControlName="street" id="street" type="text" pInputText />
-            <small *ngIf="userForm['street'].invalid && isSubmitted" class="p-error">Street is required</small>
+            <small *ngIf="checkoutForm['street'].invalid && isSubmitted" class="p-error">Street is required</small>
           </div>
           <div class="field col-4">
             <label for="street">Apartment</label>
             <input formControlName="apartment" id="apartment" type="text" pInputText />
-            <small *ngIf="userForm['apartment'].invalid && isSubmitted" class="p-error">Apartment is required</small>
+            <small *ngIf="checkoutForm['apartment'].invalid && isSubmitted" class="p-error">Apartment is required</small>
           </div>
           <div class="field col-4">
             <label for="street">Zip Code</label>
             <input formControlName="zip" id="zip" type="text" pInputText />
-            <small *ngIf="userForm['zip'].invalid && isSubmitted" class="p-error">Zip is required</small>
+            <small *ngIf="checkoutForm['zip'].invalid && isSubmitted" class="p-error">Zip is required</small>
           </div>
           <div class="field col-4">
             <label for="city">City</label>
             <input formControlName="city" id="city" type="text" pInputText />
-            <small *ngIf="userForm['city'].invalid && isSubmitted" class="p-error">City is required</small
+            <small *ngIf="checkoutForm['city'].invalid && isSubmitted" class="p-error">City is required</small
           >
           </div>
           <div class="field col-4">
@@ -59,7 +59,7 @@
               [showClear]="true"
               placeholder="Select a Country"
             ></p-dropdown>
-            <small *ngIf="userForm['country'].invalid && isSubmitted" class="p-error">Country is required</small>
+            <small *ngIf="checkoutForm['country'].invalid && isSubmitted" class="p-error">Country is required</small>
           </div>
         </div>
       </form>

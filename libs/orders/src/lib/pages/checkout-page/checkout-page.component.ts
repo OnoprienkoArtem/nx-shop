@@ -26,7 +26,7 @@ export class CheckoutPageComponent implements OnInit {
     this.getCountries();
   }
 
-  get userForm() {
+  get checkoutForm() {
     return this.form.controls;
   }
 
