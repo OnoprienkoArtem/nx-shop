@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Order, OrderItem } from '@bluebits/orders';
 import { UsersService } from '@bluebits/users';
 
 @Component({
@@ -14,6 +15,8 @@ export class CheckoutPageComponent implements OnInit {
   isSubmitted = false;
   editMode = false;
   countries = [];
+  orderItems: OrderItem[] = [];
+  userId: string;
 
   constructor(
     private router: Router,
@@ -38,6 +41,20 @@ export class CheckoutPageComponent implements OnInit {
     this.isSubmitted = true;
     if (this.checkoutForm['invalid']) {
       return;
+    }
+
+    const order: Order = {
+      orderItems: this.orderItems,
+      shippingAddress1: this.checkoutForm['street'].value,
+      shippingAddress2: this.checkoutForm['apartment'].value,
+      city: this.checkoutForm['city'].value,
+      zip: this.checkoutForm['zip'].value,
+      country: this.checkoutForm['country'].value,
+      phone: this.checkoutForm['strphoneeet'].value,
+      status: this.checkoutForm['status'].value,
+      totalPrice: this.checkoutForm['totalPrice'].value,
+      user: this.userId,
+      dateOrdered: `${Date.now()}`,
     }
   }
 
