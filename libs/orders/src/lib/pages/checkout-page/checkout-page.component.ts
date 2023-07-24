@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Order, OrderItem } from '@bluebits/orders';
+import { Cart, CartService, Order, OrderItem } from '@bluebits/orders';
 import { UsersService } from '@bluebits/users';
 
 @Component({
   selector: 'orders-checkout-page',
   templateUrl: './checkout-page.component.html',
-  styles: [
-  ]
 })
 export class CheckoutPageComponent implements OnInit {
   form!: FormGroup;
@@ -22,10 +20,12 @@ export class CheckoutPageComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private usersService: UsersService,
+    private cartService: CartService,
     ) { }
 
   ngOnInit(): void {
     this.initCheckoutForm();
+    this.getCartItems();
     this.getCountries();
   }
 
@@ -69,6 +69,17 @@ export class CheckoutPageComponent implements OnInit {
       apartment: ['', Validators.required],
       street: ['', Validators.required],
     });
+  }
+
+  private getCartItems() {
+    const cart: Cart = this.cartService.getCart();
+    this.orderItems = cart.items?.map(item => {
+      return {
+        product: item.productId,
+        quantity: item.quantity
+      }
+    });
+
   }
 
   private getCountries(): void {

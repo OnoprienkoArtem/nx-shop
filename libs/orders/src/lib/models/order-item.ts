@@ -1,6 +1,6 @@
-import { Product } from '@bluebits/products';
+import { Product } from "@bluebits/products";
 
-export class OrderItem {
-  product?: Product;
+export interface OrderItem {
+  product?: any;
   quantity?: number;
 }
