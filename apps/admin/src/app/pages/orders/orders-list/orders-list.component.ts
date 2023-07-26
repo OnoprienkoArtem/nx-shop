@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order, OrdersService } from '@bluebits/orders';
+import { Order, OrdersService, ORDER_STATUS } from '@bluebits/orders';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ORDER_STATUS } from '../order.constants';
 
 
 @Component({
@@ -19,7 +18,7 @@ export class OrdersListComponent implements OnInit {
   constructor(
     private ordersService: OrdersService,
     private router: Router,
-    private messageService: MessageService,  
+    private messageService: MessageService,
     private confirmationService: ConfirmationService,
   ) { }
 
@@ -30,7 +29,7 @@ export class OrdersListComponent implements OnInit {
   private fetchOrders(): void {
     this.ordersService.getOrders().subscribe(orders => {
       this.orders = orders;
-      
+
     });
   }
 
@@ -51,7 +50,7 @@ export class OrdersListComponent implements OnInit {
           },
           error: () => this.messageService.add({severity: 'success', summary: 'Success', detail: 'Order is not deleted'})
         });
-      },      
+      },
     });
-  }  
+  }
 }

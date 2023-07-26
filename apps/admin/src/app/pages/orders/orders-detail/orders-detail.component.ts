@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Order, OrdersService } from '@bluebits/orders';
+import { Order, OrdersService, ORDER_STATUS } from '@bluebits/orders';
 import { MessageService } from 'primeng/api';
 import { catchError, filter, of, switchMap, take, tap, timer } from 'rxjs';
-import { ORDER_STATUS } from '../order.constants';
 
 @Component({
   selector: 'admin-orders-detail',
@@ -19,7 +18,7 @@ export class OrdersDetailComponent implements OnInit {
   timerBack$ = timer(2000).pipe(tap(() => this.location.back()));
 
   constructor(
-    private ordersService: OrdersService, 
+    private ordersService: OrdersService,
     private route: ActivatedRoute,
     private messageService: MessageService,
     private location: Location,
@@ -27,16 +26,16 @@ export class OrdersDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.mapOrderStatus();
-    this.fetchOrder();    
+    this.fetchOrder();
   }
 
   private fetchOrder(): void {
     this.route.params.pipe(
       filter(params => params['id']),
-      switchMap(params => {       
+      switchMap(params => {
         return this.ordersService.getOrder(params['id'])
       }),
-      tap(order => {       
+      tap(order => {
         this.order = order;
         this.selectedStatus = order.status;
       }),
@@ -60,6 +59,6 @@ export class OrdersDetailComponent implements OnInit {
       switchMap(() => this.timerBack$),
       catchError(() => of(this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Status is not updated' }))),
       take(1),
-    ).subscribe();    
+    ).subscribe();
   }
 }

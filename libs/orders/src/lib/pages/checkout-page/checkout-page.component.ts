@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Cart, CartService, Order, OrderItem } from '@bluebits/orders';
+import { Cart, CartService, Order, OrderItem, OrdersService, ORDER_STATUS } from '@bluebits/orders';
 import { UsersService } from '@bluebits/users';
 
 @Component({
@@ -21,6 +21,7 @@ export class CheckoutPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private usersService: UsersService,
     private cartService: CartService,
+    private ordersService: OrdersService,
     ) { }
 
   ngOnInit(): void {
@@ -50,12 +51,16 @@ export class CheckoutPageComponent implements OnInit {
       city: this.checkoutForm['city'].value,
       zip: this.checkoutForm['zip'].value,
       country: this.checkoutForm['country'].value,
-      phone: this.checkoutForm['strphoneeet'].value,
-      status: this.checkoutForm['status'].value,
+      phone: this.checkoutForm['phone'].value,
+      status: '0',
       totalPrice: this.checkoutForm['totalPrice'].value,
       user: this.userId,
       dateOrdered: `${Date.now()}`,
     }
+
+    debugger;
+
+    this.ordersService.createOrder(order).subscribe();
   }
 
   initCheckoutForm(): void {
