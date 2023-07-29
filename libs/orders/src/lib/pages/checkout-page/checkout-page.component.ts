@@ -53,8 +53,7 @@ export class CheckoutPageComponent implements OnInit {
       country: this.checkoutForm['country'].value,
       phone: this.checkoutForm['phone'].value,
       status: '0',
-      totalPrice: this.checkoutForm['totalPrice'].value,
-      user: this.userId,
+      user: '5f67be25ef4061637c13a11a',
       dateOrdered: `${Date.now()}`,
     }
 
