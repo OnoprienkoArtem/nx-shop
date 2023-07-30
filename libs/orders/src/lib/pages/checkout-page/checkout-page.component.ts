@@ -57,9 +57,9 @@ export class CheckoutPageComponent implements OnInit {
       dateOrdered: `${Date.now()}`,
     }
 
-    debugger;
-
-    this.ordersService.createOrder(order).subscribe();
+    this.ordersService.createOrder(order).subscribe(() => {
+      this.router.navigate(['/success']);
+    });
   }
 
   initCheckoutForm(): void {

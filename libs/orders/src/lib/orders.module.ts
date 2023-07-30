@@ -18,6 +18,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
+import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 
 
 export const ordersRoutes: Route[] = [
@@ -28,6 +29,10 @@ export const ordersRoutes: Route[] = [
   {
     path: 'checkout',
     component: CheckoutPageComponent,
+  },
+  {
+    path: 'success',
+    component: ThankYouComponent,
   }
 ];
 
@@ -51,6 +56,7 @@ export const ordersRoutes: Route[] = [
       CartPageComponent,
       OrderSummaryComponent,
       CheckoutPageComponent,
+      ThankYouComponent,
     ],
     exports: [
       CartIconComponent,
