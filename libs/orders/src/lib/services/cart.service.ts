@@ -14,7 +14,7 @@ export class CartService {
 
   constructor() { }
 
-  initCartLocalstorage() {
+  initCartLocalstorage(): void {
     const cart: Cart = this.getCart();
     if (!cart) {
       const inialCart = {
@@ -23,6 +23,14 @@ export class CartService {
 
       localStorage.setItem(CART_KEY, JSON.stringify(inialCart));
     }
+  }
+
+  emptyCart(): void {
+    const inialCart = {
+      items: []
+    };
+    localStorage.setItem(CART_KEY, JSON.stringify(inialCart));
+    this.cart$.next(inialCart);
   }
 
   getCart(): Cart {
