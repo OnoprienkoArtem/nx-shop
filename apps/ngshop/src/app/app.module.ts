@@ -16,6 +16,7 @@ import { ProductsModule } from '@bluebits/products';
 import { UiModule } from '@bluebits/ui';
 import { HttpClientModule } from '@angular/common/http';
 import { OrdersModule } from '@bluebits/orders';
+import { UsersModule } from '@bluebits/users';
 
 const routes: Routes = [
     {
@@ -42,6 +43,7 @@ const routes: Routes = [
       UiModule,
       OrdersModule,
       ToastModule,
+      UsersModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
