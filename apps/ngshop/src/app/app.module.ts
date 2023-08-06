@@ -17,6 +17,8 @@ import { UiModule } from '@bluebits/ui';
 import { HttpClientModule } from '@angular/common/http';
 import { OrdersModule } from '@bluebits/orders';
 import { UsersModule } from '@bluebits/users';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 const routes: Routes = [
     {
@@ -44,6 +46,8 @@ const routes: Routes = [
       OrdersModule,
       ToastModule,
       UsersModule,
+      StoreModule.forRoot({}),
+      EffectsModule.forRoot([]),
     ],
     providers: [],
     bootstrap: [AppComponent]

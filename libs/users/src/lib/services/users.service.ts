@@ -55,4 +55,8 @@ export class UsersService {
       map((objectValue: any) => objectValue.userCount),
     );
   }
+
+  initAppSession(): void {
+
+  }
 }
