@@ -4,6 +4,7 @@ import {map, Observable} from 'rxjs';
 import { environment } from '@env/environment';
 import { User } from '../models/user';
 import * as countriesLib from 'i18n-iso-countries';
+import { UsersFacade } from '../state/users.facade';
 declare const require: any;
 
 @Injectable({
@@ -13,7 +14,10 @@ export class UsersService {
 
   apiUrlUsers = `${environment.apiUrl}users`;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private usersFacade: UsersFacade
+  ) {
     countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'))
   }
 
@@ -57,6 +61,6 @@ export class UsersService {
   }
 
   initAppSession(): void {
-
+    this.usersFacade.buildUserSession();
   }
 }
