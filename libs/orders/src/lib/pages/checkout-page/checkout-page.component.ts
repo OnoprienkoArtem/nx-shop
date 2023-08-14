@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cart, CartService, Order, OrderItem, OrdersService, ORDER_STATUS } from '@bluebits/orders';
 import { UsersService } from '@bluebits/users';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'orders-checkout-page',
@@ -26,6 +27,7 @@ export class CheckoutPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCheckoutForm();
+    this.autoFillUserData();
     this.getCartItems();
     this.getCountries();
   }
@@ -73,6 +75,12 @@ export class CheckoutPageComponent implements OnInit {
       zip: ['', Validators.required],
       apartment: ['', Validators.required],
       street: ['', Validators.required],
+    });
+  }
+
+  private autoFillUserData() {
+    this.usersService.observeCurrentUser().pipe(take(1)).subscribe(user => {
+      this.checkoutForm['name'].setValue(user.name);
     });
   }
 

@@ -63,4 +63,12 @@ export class UsersService {
   initAppSession(): void {
     this.usersFacade.buildUserSession();
   }
+
+  observeCurrentUser(): Observable<any> {
+    return this.usersFacade.currentUser$;
+  }
+
+  isCurrentUserAuth(): Observable<any> {
+    return this.usersFacade.isAthenticated$;
+  }
 }
