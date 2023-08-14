@@ -80,7 +80,16 @@ export class CheckoutPageComponent implements OnInit {
 
   private autoFillUserData() {
     this.usersService.observeCurrentUser().pipe(take(1)).subscribe(user => {
-      this.checkoutForm['name'].setValue(user.name);
+      if (user) {
+        this.checkoutForm['name'].setValue(user.name);
+        this.checkoutForm['email'].setValue(user.email);
+        this.checkoutForm['phone'].setValue(user.phone);
+        this.checkoutForm['city'].setValue(user.city);
+        this.checkoutForm['country'].setValue(user.country);
+        this.checkoutForm['zip'].setValue(user.zip);
+        this.checkoutForm['apartment'].setValue(user.apartment);
+        this.checkoutForm['street'].setValue(user.street);
+      }
     });
   }
 
