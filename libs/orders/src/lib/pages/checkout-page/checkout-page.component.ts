@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cart, CartService, Order, OrderItem, OrdersService, ORDER_STATUS } from '@bluebits/orders';
 import { UsersService } from '@bluebits/users';
-import { take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'orders-checkout-page',
   templateUrl: './checkout-page.component.html',
 })
-export class CheckoutPageComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   isSubmitted = false;
   editMode = false;
   countries = [];
   orderItems: OrderItem[] = [];
   userId: string;
+  unSubscribe$: Subject<any> = new Subject();
 
   constructor(
     private router: Router,
@@ -30,6 +32,11 @@ export class CheckoutPageComponent implements OnInit {
     this.autoFillUserData();
     this.getCartItems();
     this.getCountries();
+  }
+
+  ngOnDestroy(): void {
+    this.unSubscribe$.next(false);
+    this.unSubscribe$.complete();
   }
 
   get checkoutForm() {
@@ -55,7 +62,7 @@ export class CheckoutPageComponent implements OnInit {
       country: this.checkoutForm['country'].value,
       phone: this.checkoutForm['phone'].value,
       status: '0',
-      user: '5f67be25ef4061637c13a11a',
+      user: this.userId,
       dateOrdered: `${Date.now()}`,
     }
 
@@ -79,8 +86,9 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   private autoFillUserData() {
-    this.usersService.observeCurrentUser().pipe(take(1)).subscribe(user => {
+    this.usersService.observeCurrentUser().pipe(takeUntil(this.unSubscribe$)).subscribe(user => {
       if (user) {
+        this.userId = user.id;
         this.checkoutForm['name'].setValue(user.name);
         this.checkoutForm['email'].setValue(user.email);
         this.checkoutForm['phone'].setValue(user.phone);
