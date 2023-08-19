@@ -40,6 +40,8 @@ import { JwtInterceptor, UsersModule } from '@bluebits/users';
 
 import { CategoriesService } from "@bluebits/products";
 import { AppRoutingModule} from "./app-routing.module";
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 const PRIME_MODULE = [
@@ -80,6 +82,8 @@ const PRIME_MODULE = [
       BrowserModule,
       BrowserAnimationsModule,
       HttpClientModule,
+      StoreModule.forRoot({}),
+      EffectsModule.forRoot([]),
       FormsModule,
       ReactiveFormsModule,
       UsersModule,
