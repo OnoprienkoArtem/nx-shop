@@ -53,23 +53,28 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const order: Order = {
-      orderItems: this.orderItems,
-      shippingAddress1: this.checkoutForm['street'].value,
-      shippingAddress2: this.checkoutForm['apartment'].value,
-      city: this.checkoutForm['city'].value,
-      zip: this.checkoutForm['zip'].value,
-      country: this.checkoutForm['country'].value,
-      phone: this.checkoutForm['phone'].value,
-      status: '0',
-      user: this.userId,
-      dateOrdered: `${Date.now()}`,
-    }
+    this.ordersService.createCheckoutSession(this.orderItems).subscribe(session => {
+      console.log(session);
 
-    this.ordersService.createOrder(order).subscribe(() => {
-      this.cartService.emptyCart();
-      this.router.navigate(['/success']);
     });
+
+    // const order: Order = {
+    //   orderItems: this.orderItems,
+    //   shippingAddress1: this.checkoutForm['street'].value,
+    //   shippingAddress2: this.checkoutForm['apartment'].value,
+    //   city: this.checkoutForm['city'].value,
+    //   zip: this.checkoutForm['zip'].value,
+    //   country: this.checkoutForm['country'].value,
+    //   phone: this.checkoutForm['phone'].value,
+    //   status: '0',
+    //   user: this.userId,
+    //   dateOrdered: `${Date.now()}`,
+    // }
+
+    // this.ordersService.createOrder(order).subscribe(() => {
+    //   this.cartService.emptyCart();
+    //   this.router.navigate(['/success']);
+    // });
   }
 
   initCheckoutForm(): void {

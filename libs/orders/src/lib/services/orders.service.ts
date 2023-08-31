@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import { environment } from '@env/environment';
 import { Order } from '../models/order';
+import { OrderItem } from '@bluebits/orders';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,9 @@ export class OrdersService {
 
   getProduct(productId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrlProducts}/${productId}`);
+  }
+
+  createCheckoutSession(orderItem: OrderItem[]) {
+    return this.http.post(`${this.apiUrlOrders}/create-checkout-session`, orderItem);
   }
 }
