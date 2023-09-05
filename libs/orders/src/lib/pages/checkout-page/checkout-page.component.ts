@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Cart, CartService, Order, OrderItem, OrdersService, ORDER_STATUS } from '@bluebits/orders';
+import { Cart, CartService, OrderItem, OrdersService } from '@bluebits/orders';
 import { UsersService } from '@bluebits/users';
 import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'orders-checkout-page',
@@ -25,7 +25,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     private usersService: UsersService,
     private cartService: CartService,
     private ordersService: OrdersService,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.initCheckoutForm();
@@ -53,9 +53,11 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.ordersService.createCheckoutSession(this.orderItems).subscribe(session => {
-      console.log(session);
+    this.ordersService.createCheckoutSession(this.orderItems).subscribe(error => {
+      if (error) {
+        console.log('error in redirect to payment');
 
+      }
     });
 
     // const order: Order = {

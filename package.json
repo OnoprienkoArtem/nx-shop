@@ -29,7 +29,7 @@
         "animate.css": "^4.1.1",
         "bootstrap": "^5.2.0-beta1",
         "i18n-iso-countries": "^7.5.0",
-        "ngx-stripe": "^16.2.0",
+        "ngx-stripe": "^12.8.2",
         "normalize.css": "^8.0.1",
         "primeflex": "^3.2.1",
         "primeicons": "^5.0.0",

@@ -19,6 +19,7 @@ import { OrdersModule } from '@bluebits/orders';
 import { JwtInterceptor, UsersModule } from '@bluebits/users';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { NgxStripeModule } from 'ngx-stripe';
 
 const routes: Routes = [
     {
@@ -48,6 +49,7 @@ const routes: Routes = [
       OrdersModule,
       ToastModule,
       UsersModule,
+      NgxStripeModule.forRoot('pk_test_51NhIMvGeEpJcVEkbabHI6pvUOzp90EIbA1aNHlB6btIBjWoYdeBdpJGW9kXPxu1105Ti5Hauc8jkeZLuc2HtZVHs00qkZKEOJw'),
     ],
     providers: [
       {
