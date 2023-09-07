@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
   ]
 })
 export class ThankYouComponent {
+
+      // this.ordersService.createOrder(order).subscribe(() => {
+    //   this.cartService.emptyCart();
+    //   this.router.navigate(['/success']);
+    // });
 }

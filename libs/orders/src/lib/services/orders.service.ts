@@ -62,4 +62,8 @@ export class OrdersService {
       }),
     );
   }
+
+  cacheOrderData(order: Order) {
+    localStorage.setItem('orderData', JSON.stringify(order));
+  }
 }
