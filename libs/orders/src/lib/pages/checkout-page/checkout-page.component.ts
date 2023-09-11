@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Cart, CartService, OrderItem, OrdersService } from '@bluebits/orders';
+import { Cart, CartService, Order, OrderItem, OrdersService } from '@bluebits/orders';
 import { UsersService } from '@bluebits/users';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
