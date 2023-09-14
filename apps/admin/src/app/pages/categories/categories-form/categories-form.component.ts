@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from '@bluebits/products';
 import { MessageService } from 'primeng/api';
-import { filter, timer, tap, switchMap, catchError, of, take, debounceTime } from 'rxjs';
+import { filter, timer, tap, switchMap, catchError, of, take } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -44,14 +44,14 @@ export class CategoriesFormComponent implements OnInit {
       return;
     }
 
-    this.isDisabled = true;    
+    this.isDisabled = true;
 
     const category: Category = {
       id: this.currentCategoryId,
       name: this.categoryForm['name'].value,
       icon: this.categoryForm['icon'].value,
       color: this.categoryForm['color'].value
-    };    
+    };
 
     if (this.editMode) {
       this.updateCategory(category);

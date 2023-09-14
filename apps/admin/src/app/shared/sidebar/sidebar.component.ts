@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "@bluebits/users";
+import { Component } from '@angular/core';
+import { AuthService } from "@bluebits/users";
 
 @Component({
   selector: 'admin-sidebar',
